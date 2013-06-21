@@ -138,11 +138,16 @@
 
         <script id="journey-form" type='text/html'>
             <div class='control-group'>
-              <div class="btn-group span12" id="mode-toggle-btns" data-toggle='buttons-radio'>
-                <button type="button" class="btn btn-success span6 active" value="walking"><i class='walking-icon'></i> Walking</button>
-                <button type="button" class="btn btn-success span6" value="cycling"><i class='cycling-icon'></i> Cycling</button>
+              <div class="btn-group span12" id="mode-toggle-btns" data-toggle="buttons-radio">
+                <label for='mode_walking' class="btn btn-success span6 active">
+                  <input id='mode_walking' name="mode" type='radio' value="walking" checked /><i class='walking-icon'></i> Walking
+                </label>
+                <label for='mode_cycling' class="btn btn-success span6">
+                  <input id='mode_cycling' name="mode" type='radio' value="cycling" /><i class='cycling-icon'></i> Cycling
+                </label>
               </div>
-              <input id="mode" name="mode" type="hidden" required />
+
+
               <div class='clearfix'></div>
             </div>
             <div id='waypoints'></div>
@@ -164,7 +169,7 @@
             <input id='waypoint_<%= fieldIndex() %>_x' name='waypoints[<%= fieldIndex() %>][x]' value="<%= x %>" type='hidden' required >
             <input id='waypoint_<%= fieldIndex() %>_y' name='waypoints[<%= fieldIndex() %>][y]' value="<%= y %>" type='hidden' required >
             <% if (showClose()){ %>
-              <a href='#' class="close">close</a>
+              <a href='#' class="close">&times;</a>
             <% } %>
           </div>
         </script>

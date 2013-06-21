@@ -35,11 +35,6 @@ define [], ->
       $(".left_sidebar, .right_body").height($(window).height() - 150)
     $(window).trigger("resize")
 
-  JourneyPlanner.App.addInitializer (options)->
-    $("#mode-toggle-btns button").on "click", ->
-      value = $(this).val()
-      $("#mode").val(value)
-    $("#mode-toggle-btns button.active").trigger("click")
 
   require ["models/journey", "models/waypoint", "models/step", "views/journey_form", "views/sidebar"], ->
     JourneyPlanner.App.start()

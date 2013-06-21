@@ -17,6 +17,7 @@ class JourneyPlanner.Views.WaypointFields extends Marionette.ItemView
 
   removeWaypoint: ->
     @model.collection.remove(@model)
+    false
 
 
 class JourneyPlanner.Views.JourneyForm extends Marionette.CompositeView
@@ -28,3 +29,4 @@ class JourneyPlanner.Views.JourneyForm extends Marionette.CompositeView
 
   addWaypoint: ->
     @collection.add({})
+    false

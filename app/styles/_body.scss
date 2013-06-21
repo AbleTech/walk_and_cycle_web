@@ -16,13 +16,16 @@
 }
 
 #mode-toggle-btns{
-  button.active{
+  label.active{
     // background-image: image-url('mode_selected.png');
     // background-position: top left;
     // background-size: 20px 20px;
     // background-repeat: no-repeat;
     // overflow: hidden;
     font-weight:bold;
+  }
+  input[name='mode']{
+    display:none;
   }
   i.walking-icon{
     background: image-url('walking.png') center no-repeat;
