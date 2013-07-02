@@ -6,7 +6,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title></title>
+        <title>Cycling &amp; Walking Journey Planner</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale = 1">
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -139,11 +139,11 @@
         <script id="journey-form" type='text/html'>
             <div class='control-group'>
               <div class="btn-group span12" id="mode-toggle-btns" data-toggle="buttons-radio">
-                <label for='mode_walking' class="btn btn-success span6 active">
-                  <input id='mode_walking' name="mode" type='radio' value="walking" checked /><i class='walking-icon'></i> Walking
+                <label for='mode_walking' class="btn btn-success span6 <%= modeActive('walking') %>">
+                  <input id='mode_walking' name="mode" type='radio' value="walking" <%= modeChecked('walking') %> /><i class='walking-icon'></i> Walking
                 </label>
-                <label for='mode_cycling' class="btn btn-success span6">
-                  <input id='mode_cycling' name="mode" type='radio' value="cycling" /><i class='cycling-icon'></i> Cycling
+                <label for='mode_cycling' class="btn btn-success span6 <%= modeActive('cycling') %>">
+                  <input id='mode_cycling' name="mode" type='radio' value="cycling" <%= modeChecked('cycling') %> /><i class='cycling-icon'></i> Cycling
                 </label>
               </div>
 
@@ -175,7 +175,8 @@
         </script>
 
         <script id='journey-sidebar' type="text/html">
-          <h4>Journey</h4>
+          <h4><%= description() %></h4>
+          <p><%= totalDistance() %></p>
           <ol></ol>
         </script>
         <script id='step-item' type='text/html'>

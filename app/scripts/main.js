@@ -5,6 +5,7 @@ require.config({
         underscore: '../components/underscore/underscore',
         backbone: '../components/backbone/backbone',
         marionette: '../components/backbone.marionette/lib/backbone.marionette',
+        jquery_bbq: "vendor/jquery.bbq",
         search_widget: "search_widget"
     },
     shim: {
@@ -22,11 +23,14 @@ require.config({
         marionette:{
             deps: ["jquery","underscore","backbone"],
             exports: "Marionette"
+        },
+        jquery_bbq:{
+          deps:["jquery"]
         }
     }
 });
 
-require(['jquery', 'bootstrap','underscore','backbone','marionette','search_widget'], function () {
+require(['marionette', "jquery_bbq", 'bootstrap','search_widget'], function () {
     'use strict';
     require(['app']);
 });

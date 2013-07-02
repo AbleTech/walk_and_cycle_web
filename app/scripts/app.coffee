@@ -23,11 +23,10 @@ define [], ->
   JourneyPlanner.App.addInitializer (options)->
     @journey = new JourneyPlanner.Models.Journey()
     @journey.waypoints.add [{},{}]
-    JourneyPlanner.App.resultsRegion.show new JourneyPlanner.Views.Sidebar({collection: @journey.steps})
-    JourneyPlanner.App.journeyFields.show new JourneyPlanner.Views.JourneyForm({model: @journey, collection: @journey.waypoints})
+
     $("#journey_form").submit (e)=>
-      @journey.params = $("#journey_form").serialize()
-      @journey.fetch()
+      query_str = unescape($("#journey_form").serialize())
+      @router.navigate("?#{query_str}", {trigger: true, replace: true})
       false
 
   JourneyPlanner.App.addInitializer (options)->
@@ -36,7 +35,12 @@ define [], ->
     $(window).trigger("resize")
 
 
-  require ["models/journey", "models/waypoint", "models/step", "views/journey_form", "views/sidebar"], ->
+  JourneyPlanner.App.addInitializer (options)->
+    @router = new JourneyPlanner.DefaultRouter()
+    Backbone.history.start({pushState: true})
+
+  require [ "routers/default", "models/journey", "models/waypoint", "models/step", "views/journey_form", "views/sidebar"], ->
+
     JourneyPlanner.App.start()
 
 

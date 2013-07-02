@@ -116,7 +116,8 @@ module.exports = function (grunt) {
             all: {
                 options: {
                     run: true,
-                    urls: ['http://localhost:<%= connect.options.port %>/index.html']
+                    urls: ['http://localhost:<%= connect.options.port %>/index.html'],
+                    reporter: "Spec"
                 }
             }
         },
@@ -340,6 +341,8 @@ module.exports = function (grunt) {
 
     grunt.registerTask('test', [
         'clean:server',
+        'copy:distjs',
+        'symlink:js',
         'concurrent:test',
         'connect:test',
         'mocha'

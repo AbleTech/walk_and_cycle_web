@@ -20,9 +20,21 @@ class JourneyPlanner.Models.Waypoint extends Backbone.Model
       else
         {}
 
-
   getLatLng: ->
     @_latlng ||= new google.maps.LatLng(@get("y"), @get("x"))
+
+  streetName: ->
+    @get("a").split(",")[0]
+
+  queryStr: ->
+    "waypoints[#{@index()}][a]=#{escape(@get('a'))}&waypoints[#{@index()}][x]=#{escape(@get('x'))}&waypoints[#{@index()}][y]=#{escape(@get('y'))}"
+
+  validate: (attrs, options)->
+    errors = []
+    unless attrs.x?.length > 0
+      errors.push "missing x coordinate"
+    unless attrs.y?.length > 0
+      errors.push "missing y coordinate"
 
 
 class JourneyPlanner.Collections.Waypoints extends Backbone.Collection
