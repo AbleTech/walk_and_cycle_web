@@ -45,16 +45,28 @@
 
 }
 
-#mapdiv{
-  // height:400px;
-  height: 100%;
-  img{
-    max-width: none;
+.right_body{
+  position: relative;
+  padding-bottom: 150px;
+  #mapdiv{
+    height: 100%;
+    img{
+      max-width: none;
+    }
+    label {
+      width: auto;
+      display:inline;
+    }
   }
-  label {
-    width: auto;
-    display:inline;
+
+  #elevation_graph{
+    background: rgba(#fff, 0.8);
+    position:absolute;
+    bottom: 20px;
+    height: 100px;
+
   }
+
 }
 
 footer{

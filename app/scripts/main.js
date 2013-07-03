@@ -5,6 +5,8 @@ require.config({
         underscore: '../components/underscore/underscore',
         backbone: '../components/backbone/backbone',
         marionette: '../components/backbone.marionette/lib/backbone.marionette',
+        d3: "../components/d3/d3",
+        r2d3: "../components/r2d3/r2d3",
         jquery_bbq: "vendor/jquery.bbq",
         search_widget: "search_widget"
     },
@@ -15,6 +17,9 @@ require.config({
         },
         underscore:{
             exports: '_'
+        },
+        d3:{
+          exports: "d3"
         },
         backbone:{
             deps:['jquery','underscore'],
@@ -30,7 +35,10 @@ require.config({
     }
 });
 
-require(['marionette', "jquery_bbq", 'bootstrap','search_widget'], function () {
-    'use strict';
-    require(['app']);
+var d3lib = (Modernizr.svg) ? "d3" : "r2d3";
+
+
+require(['marionette', "jquery_bbq", 'bootstrap', 'search_widget', d3lib], function () {
+  'use strict';
+  require(['app']);
 });

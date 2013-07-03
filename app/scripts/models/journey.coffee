@@ -11,6 +11,7 @@ class JourneyPlanner.Models.Journey extends Backbone.Model
       @steps.reset(@get('steps'))
     @on "sync", =>
       @updateMap() if @get("encoded_polyline")
+      @updateGraph() if @get("elevation")
 
   validate: (attrs, options)->
     errors = []
@@ -36,6 +37,10 @@ class JourneyPlanner.Models.Journey extends Backbone.Model
     @path_overlay?.setMap(null)
     if @waypoint_markers?
       _(@waypoint_markers).each (marker)-> marker.setMap(null)
+
+  updateGraph: ->
+    JourneyPlanner.App.graph.updateData(@get("elevation"), @get("total_distance"))
+
 
   updateMap: ->
     JourneyPlanner.App.map?.fitBounds(@steps.bounding_box())

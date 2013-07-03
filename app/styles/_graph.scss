@@ -1,0 +1,25 @@
+.x_axis, .y_axis{
+  path, line{
+    fill: none;
+    stroke: #333;
+    shape-rendering: crispEdges;
+  }
+  text{
+    font-family: Lato, sans-serif;
+    font-weight: bold;
+    font-size: 8px;
+  }
+}
+.elevation_area {
+  fill: $greenLight;
+  stroke: none;
+}
+.elevation_stroke{
+  fill:none;
+  stroke: $green;
+  stroke-width: 2;
+}
+rect.bg_rect{
+  fill-opacity: 0;
+  stroke: none;
+}

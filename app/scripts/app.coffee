@@ -21,9 +21,9 @@ define [], ->
     @map = new google.maps.Map document.getElementById('mapdiv'), map_opts
 
   JourneyPlanner.App.addInitializer (options)->
-    @journey = new JourneyPlanner.Models.Journey()
-    @journey.waypoints.add [{},{}]
+    @graph = new ElevationGraph()
 
+  JourneyPlanner.App.addInitializer (options)->
     $("#journey_form").submit (e)=>
       query_str = unescape($("#journey_form").serialize())
       @router.navigate("?#{query_str}", {trigger: true, replace: true})
@@ -31,7 +31,8 @@ define [], ->
 
   JourneyPlanner.App.addInitializer (options)->
     $(window).resize ->
-      $(".left_sidebar, .right_body").height($(window).height() - 150)
+      $(".left_sidebar").height($(window).height() - 150)
+      $(".right_body").height($(window).height() - 300)
     $(window).trigger("resize")
 
 
@@ -39,8 +40,7 @@ define [], ->
     @router = new JourneyPlanner.DefaultRouter()
     Backbone.history.start({pushState: true})
 
-  require [ "routers/default", "models/journey", "models/waypoint", "models/step", "views/journey_form", "views/sidebar"], ->
-
+  require [ "routers/default", "models/journey", "models/waypoint", "models/step", "views/journey_form", "views/sidebar", "elevation_graph"], ->
     JourneyPlanner.App.start()
 
 
