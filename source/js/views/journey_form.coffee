@@ -1,7 +1,7 @@
 class JourneyPlanner.Views.WaypointFields extends Marionette.ItemView
   tagName: "div"
   className: 'control-group'
-  template: "#waypoint_fields"
+  template: JST["templates/waypoint_fields"]
 
   events:
     "click a.close": "removeWaypoint"
@@ -23,7 +23,7 @@ class JourneyPlanner.Views.WaypointFields extends Marionette.ItemView
 class JourneyPlanner.Views.JourneyForm extends Marionette.CompositeView
   itemView: JourneyPlanner.Views.WaypointFields
   itemViewContainer: "#waypoints"
-  template: "#journey-form"
+  template: JST["templates/journey_form"]
   events:
     "click a.add-waypoint" : "addWaypoint"
 

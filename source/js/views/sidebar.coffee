@@ -1,11 +1,11 @@
 class JourneyPlanner.Views.StepItem extends Marionette.ItemView
   tagName: "li"
-  template: "#step-item"
+  template: JST["templates/step_item"]
 
 class JourneyPlanner.Views.Sidebar extends Marionette.CompositeView
   itemView: JourneyPlanner.Views.StepItem
   itemViewContainer: "ol"
-  template: "#journey-sidebar"
+  template: JST["templates/journey_sidebar"]
 
   initialize: ->
     @listenTo @model, "change", @render

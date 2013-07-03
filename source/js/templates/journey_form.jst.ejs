@@ -1,0 +1,17 @@
+<div class='control-group'>
+  <div class="btn-group span12" id="mode-toggle-btns" data-toggle="buttons-radio">
+    <label for='mode_walking' class="btn btn-success span6 <%= modeActive('walking') %>">
+      <input id='mode_walking' name="mode" type='radio' value="walking" <%= modeChecked('walking') %> /><i class='walking-icon'></i> Walking
+    </label>
+    <label for='mode_cycling' class="btn btn-success span6 <%= modeActive('cycling') %>">
+      <input id='mode_cycling' name="mode" type='radio' value="cycling" <%= modeChecked('cycling') %> /><i class='cycling-icon'></i> Cycling
+    </label>
+  </div>
+
+
+  <div class='clearfix'></div>
+</div>
+<div id='waypoints'></div>
+
+<a href='#' class='btn btn-link add-waypoint'>+ Add Destination</a>
+<input type='submit' class='btn btn-primary btn-block' value='Get Directions &raquo;'>

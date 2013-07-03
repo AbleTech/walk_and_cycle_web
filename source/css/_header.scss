@@ -12,14 +12,14 @@
       height: 29px;
     }
     .left {
-      background-image: url(/images/header/header_block_sides.png);
+      background-image: image-url('header/header_block_sides.png');
       background-position: 0 0;
       background-repeat: no-repeat;
       background-color: #f99d31;
       width: 10px;
     }
     .middle {
-      background: #f99d31 url(/images/header/header_block_middle.png);
+      background: #f99d31 image-url('header/header_block_middle.png');
 
       ul {
         @extend .unstyled;
@@ -43,7 +43,7 @@
       }
     }
     .right {
-      background-image: url(/images/header/header_block_sides.png);
+      background-image: image-url('header/header_block_sides.png');
       background-position: -10px 0;
       background-repeat: no-repeat;
       background-color: #f99d31;
@@ -69,7 +69,7 @@
 
 .header_bottom {
   background-color: #f99d31;
-  background-image: url(/images/fdgsmt.png);
+  background-image: image-url('fdgsmt.png');
   background-position: -48px -696px;
   background-repeat: repeat;
   height: 44px;
@@ -78,7 +78,7 @@
     margin: 0;
     height: 36px;
     select {
-      background-image: url(/images/fdgsmt.png);
+      background-image: image-url('fdgsmt.png');
       background-position: -48px -1092px;
       background-repeat: no-repeat;
       border: none;
@@ -105,7 +105,7 @@
     a {
       color: $orange;
       &.print {
-        background-image: url(/images/fdgsmt.png);
+        background-image: image-url('fdgsmt.png');
         background-position: -48px -1344px;
         background-repeat: no-repeat;
         padding: 1px 0px 0px 20px;

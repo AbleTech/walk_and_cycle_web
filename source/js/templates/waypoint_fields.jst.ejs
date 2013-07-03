@@ -1,0 +1,15 @@
+<label for='waypoint_<%= fieldIndex() %>_a'>
+<% if (fieldIndex() === 0){ %>
+  From:
+<% } else { %>
+  To:
+<% } %>
+</label>
+<div class="controls">
+  <input id='waypoint_<%= fieldIndex() %>_a' name='waypoints[<%= fieldIndex() %>][a]' value="<%= a %>" type='search' required class="span12 search-query" placeholder="Enter Address">
+  <input id='waypoint_<%= fieldIndex() %>_x' name='waypoints[<%= fieldIndex() %>][x]' value="<%= x %>" type='hidden' required >
+  <input id='waypoint_<%= fieldIndex() %>_y' name='waypoints[<%= fieldIndex() %>][y]' value="<%= y %>" type='hidden' required >
+  <% if (showClose()){ %>
+    <a href='#' class="close">&times;</a>
+  <% } %>
+</div>
