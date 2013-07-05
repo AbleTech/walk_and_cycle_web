@@ -1,13 +1,13 @@
 class window.ElevationGraph
-  constructor: ->
-    @svg = d3.select("#elevation_graph").append("svg")
+  constructor: (element)->
+    @svg = d3.select(element).append("svg")
       .attr("width", 600)
-      .attr("height", 100)
+      .attr("height", 120)
 
     @margin =
       top: 10
       right: 10
-      bottom: 20
+      bottom: 40
       left: 25
 
     @width  = @svg.attr("width") - @margin.left - @margin.right
@@ -64,8 +64,8 @@ class window.ElevationGraph
 
     @paper.selectAll(".elevation_area, .elevation_stroke").remove()
 
-    @paper.selectAll(".x_axis").remove()
-    @paper.selectAll(".y_axis").remove()
+    @axes.selectAll(".x_axis").remove()
+    @axes.selectAll(".y_axis").remove()
 
     @paper.append("path")
       .datum(elevation_data.data)
@@ -76,10 +76,21 @@ class window.ElevationGraph
       .attr("class", "x_axis")
       .attr("transform", "translate(#{@margin.left},#{@height+@margin.top})")
       .call(@x_axis)
+      .append("text")
+      .attr("y", 25)
+      .attr("x", @width)
+      .style("text-anchor", "end")
+      .style("fill-opacity", "0.5")
+      .text("Distance Traveled (m)")
     @axes.append("g")
       .attr("class", "y_axis")
       .attr("transform", "translate(#{@margin.left},#{@margin.top})")
       .call(@y_axis)
+      .append("text")
+      .style("dominant-baseline", "hanging")
+      .style("fill-opacity", "0.5")
+      .attr("dx", 2)
+      .text("Altitude (m)")
 
     @paper.append("path")
       .datum(elevation_data.data)

@@ -1,11 +1,11 @@
 @import "./_colors";
 @import url(http://fonts.googleapis.com/css?family=Lato:300,700);
 
-$iconSpritePath: "../images/glyphicons-halflings.png";
-$iconWhiteSpritePath: "../images/glyphicons-halflings-white.png";
+$iconSpritePath: "../img/glyphicons-halflings.png";
+$iconWhiteSpritePath: "../img/glyphicons-halflings-white.png";
 $gridGutterWidth: 0px;
 
-$linkColor: $aqua;
+$linkColor: #004a59;
 $btnPrimaryBackground: $orange;
 $btnPrimaryBackgroundHighlight: darken($orange, 10%);
 $btnSuccessBackground: lighten($teal, 5%);
@@ -15,9 +15,9 @@ $warningBorder: darken($orange, 5%);
 
 $sansFontFamily: 'Lato', sans-serif;
 
-$fontAwesomePath: "../components/font-awesome/font";
-@import "font-awesome/sass/font-awesome.scss";
+$FontAwesomePath: "../components/font-awesome/font";
 @import "sass-bootstrap/lib/bootstrap";
+@import "font-awesome/scss/font-awesome.scss";
 @import "./_header";
 @import "./_body";
 @import "./_graph";

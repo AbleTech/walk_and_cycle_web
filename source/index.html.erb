@@ -7,8 +7,8 @@
       </form>
       <div class='tabbable'>
         <ul class='nav nav-tabs'>
-          <li class='active'><a href='#examples' data-toggle='tab'>Examples</a></li>
-          <li><a href='#results' data-toggle='tab'>Results</a></li>
+          <li class='active'><%= link_to "Examples", "#examples", data: {toggle: "tab"} %></li>
+          <li><%= link_to "Results", "#results", data: {toggle: "tab"} %></li>
         </ul>
         <div class="tab-content">
           <div class='tab-pane active' id='examples'></div>
@@ -18,12 +18,43 @@
     </div>
     <footer>
       <p>How can we make Journey Planner better for you?</p>
-      <p><a href="mailto:support@journeyplanner.org.nz" >Please send us your feedback</a></p>
+      <p><%= mail_to "support@journeyplanner.org.nz", "Please send us your feedback" %></p>
       <p>&copy; 2013 Greater Wellington Regional Council</p>
     </footer>
   </div>
   <div class="span9 right_body">
     <div id='mapdiv' class='googlemap'></div>
-    <div id="elevation_graph"></div>
+    <div class="details_panel">
+      <ul class='nav nav-pills'>
+        <li class='active'><%= link_to "Elevation", '#elevation', data: {toggle: "tab"} %></li>
+        <li><%= link_to "Calories", '#calories', data: {toggle: "tab"}  %></li>
+        <li><%= link_to "Health", '#health', data: {toggle: "tab"}  %></li>
+        <li><%= link_to "Car Costs", '#car_cost', data: {toggle: "tab"}  %></li>
+        <li><%= link_to "Carbon", '#carbon', data: {toggle: "tab"}  %></li>
+      </ul>
+      <div id='detail_content'>
+        <div class="tab-content">
+          <div class="tab-pane active" id="elevation">
+            <div id="elevation_graph"></div>
+          </div>
+          <div class="tab-pane" id="calories">
+
+          </div>
+          <div class="tab-pane" id="health">
+
+          </div>
+          <div class="tab-pane" id="car_cost">
+            <i class="icon-road big-icon"></i>
+          </div>
+          <div class="tab-pane" id="carbon">
+            <i class='icon-leaf big-icon'></i>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
 </div>
+<% content_for :javascript do %>
+  <%= javascript_include_tag "app" %>
+<% end %>

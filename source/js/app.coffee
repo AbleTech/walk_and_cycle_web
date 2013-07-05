@@ -13,21 +13,53 @@ window.JourneyPlanner =
   Views: {}
   App: new Marionette.Application()
 
+JourneyPlanner.SPEEDS =
+  walking:
+    slow: 3
+    average: 5
+    fast: 6.5
+  cycling:
+    slow: 10
+    average: 20
+    fast: 30
+
+JourneyPlanner.CAR_COST =
+  walking: 0.7
+  cycling: 0.65
+
+JourneyPlanner.HEALTH_COST =
+  walking: 3.53
+  cycling: 1.77
+
+JourneyPlanner.EFFORT =
+  walking:
+    slow:     0.0471
+    average:  0.0761
+    fast:     0.0971
+  cycling:
+    slow:     0.0690
+    average:  0.1500
+    fast:     0.2401
+
 JourneyPlanner.App.addRegions
   resultsRegion: $("#results")
   journeyFields: $("#journey_form fieldset")
+  detailContent: $("#detail_content")
 
 JourneyPlanner.App.addInitializer (options)->
   map_opts =
     center: new google.maps.LatLng(-41.105, 175.288)
     zoom: 9
-    mapTypeId: google.maps.MapTypeId.ROADMAP
+    mapTypeId: $.cookie("jp_maptype") || google.maps.MapTypeId.ROADMAP
     scaleControl: true
 
   @map = new google.maps.Map document.getElementById('mapdiv'), map_opts
 
+  google.maps.event.addListener @map, "maptypeid_changed", =>
+    $.cookie "jp_maptype", @map.getMapTypeId()
+
 JourneyPlanner.App.addInitializer (options)->
-  @graph = new ElevationGraph()
+  @pace  = $.cookie("jp_speed") || "average"
 
 JourneyPlanner.App.addInitializer (options)->
   $("#journey_form").submit (e)=>
@@ -38,7 +70,7 @@ JourneyPlanner.App.addInitializer (options)->
 JourneyPlanner.App.addInitializer (options)->
   $(window).resize ->
     $(".left_sidebar").height($(window).height() - 150)
-    $(".right_body").height($(window).height() - 300)
+    $(".right_body").height($(window).height() - 310)
   $(window).trigger("resize")
 
 

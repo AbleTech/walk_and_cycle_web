@@ -1,7 +1,23 @@
+@import "compass/css3/box-shadow";
+@import "compass/css3/border-radius";
+@import "compass/css3/images";
+
+.big-icon{
+  font-size:36px;
+}
+
 .left_sidebar{
   overflow: auto;
   .sidebar_content{
     padding: 10px;
+  }
+  .nav{
+    margin-bottom: 0;
+  }
+  .tab-content{
+    padding: 20px 10px 10px;
+    border: 1px solid #ddd;
+    border-top: none;
   }
 }
 
@@ -17,11 +33,6 @@
 
 #mode-toggle-btns{
   label.active{
-    // background-image: image-url('mode_selected.png');
-    // background-position: top left;
-    // background-size: 20px 20px;
-    // background-repeat: no-repeat;
-    // overflow: hidden;
     font-weight:bold;
   }
   input[name='mode']{
@@ -47,7 +58,7 @@
 
 .right_body{
   position: relative;
-  padding-bottom: 150px;
+  padding-bottom: 160px;
   #mapdiv{
     height: 100%;
     img{
@@ -59,14 +70,73 @@
     }
   }
 
-  #elevation_graph{
-    background: rgba(#fff, 0.8);
+  .details_panel{
     position:absolute;
-    bottom: 20px;
-    height: 100px;
-
+    bottom: 0;
+    height: 160px;
+    .nav{
+      margin-bottom: 0;
+    }
+    .tab-pane{
+      padding: 0 20px;
+    }
   }
+}
 
+#results{
+  .info_bar{
+    font-weight:bold;
+    dd{
+      margin-left:105px;
+      color:#00626d;
+      line-height:34px;
+      font-size: 16px;
+    }
+    dt{
+      width: 100px;
+      font-size: 11px;
+      color: #414141;
+      line-height:34px;
+      text-align: left;
+    }
+  }
+}
+
+
+
+dl.journey-details{
+  dt{
+    width: 110px;
+    text-align: left;
+  }
+  dd{
+    margin-left: 115px;
+  }
+}
+
+.start_address, .finish_address{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 10px;
+  span{
+    display: inline-block;
+    @include box-shadow(rgba(#000, 0.5) 0 0 10px inset);
+    padding: 2px 10px;
+    margin-right: 5px;
+    @include border-radius(5px);
+    font-weight: bold;
+    color: #fff;
+    text-transform: uppercase;
+  }
+}
+
+.start_address span{
+  background-color: #71b320;
+}
+
+.finish_address span{
+  background-color: #A8060E;
 }
 
 footer{

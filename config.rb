@@ -4,9 +4,7 @@
 
 # Change Compass configuration
 # compass_config do |config|
-#   # config.output_style = :compact
-#   http_images_path = "/img"
-#   http_generated_images_path = '/img'
+#   config.output_style = :compact
 # end
 
 ###
@@ -30,7 +28,7 @@
 # proxy "/this-page-has-no-template.html", "/template-file.html", :locals => {
 #  :which_fake_page => "Rendering a fake page with a local variable" }
 
-
+activate :directory_indexes
 
 ###
 # Helpers
@@ -40,7 +38,7 @@
 # activate :automatic_image_sizes
 
 # Reload the browser automatically whenever files change
-# activate :livereload
+activate :livereload
 
 # Methods defined in the helpers block are available in templates
 # helpers do
@@ -61,13 +59,13 @@ sprockets.append_path 'components'
 # Build-specific configuration
 configure :build do
   # For example, change the Compass output style for deployment
-  # activate :minify_css
+  activate :minify_css
 
   # Minify Javascript on build
-  # activate :minify_javascript
+  activate :minify_javascript
 
   # Enable cache buster
-  # activate :asset_hash
+  activate :asset_hash
 
   # Use relative URLs
   # activate :relative_assets

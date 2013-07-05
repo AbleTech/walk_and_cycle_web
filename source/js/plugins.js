@@ -1,11 +1,13 @@
-//= require_self
 //= require jquery/jquery
 //= require underscore/underscore
 //= require backbone/backbone
 //= require backbone.marionette/lib/backbone.marionette
 //= require d3/d3
+//= require jquery.cookie/jquery.cookie
+//= require underscore.string/lib/underscore.string
 //= require vendor/bootstrap
 //= require vendor/jquery.bbq
+//= require_self
 
 
 // Avoid `console` errors in browsers that lack a console.
@@ -20,3 +22,6 @@ if (!(window.console && console.log)) {
         }
     }());
 }
+
+// Mix in Underscore.string functions to Underscore
+_.mixin(_.string.exports());

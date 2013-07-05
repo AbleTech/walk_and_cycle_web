@@ -14,4 +14,5 @@ class JourneyPlanner.DefaultRouter extends Backbone.Router
 
     JourneyPlanner.App.resultsRegion.show new JourneyPlanner.Views.Sidebar({model: @journey, collection: @journey.steps})
     JourneyPlanner.App.journeyFields.show new JourneyPlanner.Views.JourneyForm({model: @journey, collection: @journey.waypoints})
+    JourneyPlanner.App.detailContent.show new JourneyPlanner.Views.DetailsContent({model: @journey})
     @journey.fetch() if @journey.isValid()

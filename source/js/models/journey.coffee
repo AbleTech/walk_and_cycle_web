@@ -2,6 +2,7 @@ class JourneyPlanner.Models.Journey extends Backbone.Model
 
   defaults:
     mode: "walking"
+    altitudeFactor: 1.13046330315024
 
   initialize: ->
     @waypoints = new JourneyPlanner.Collections.Waypoints()
@@ -11,7 +12,7 @@ class JourneyPlanner.Models.Journey extends Backbone.Model
       @steps.reset(@get('steps'))
     @on "sync", =>
       @updateMap() if @get("encoded_polyline")
-      @updateGraph() if @get("elevation")
+      $("a[href='#results']").show().tab("show")
 
   validate: (attrs, options)->
     errors = []
@@ -33,14 +34,31 @@ class JourneyPlanner.Models.Journey extends Backbone.Model
     if response.success and response.total > 0
       response.journeys[0]
 
+  total_time: ->
+    (@get("total_distance")/(@currentSpeed()*1000))*60
+
+  car_cost: ->
+    JourneyPlanner.CAR_COST[@get("mode")] * (@get("total_distance")/1000)
+
+  health_cost: ->
+    JourneyPlanner.HEALTH_COST[@get("mode")] * (@get("total_distance")/1000)
+
+  carbon_saving: ->
+    0.214 * (@get("total_distance")/1000)
+
+  calculate_calories: (weight)->
+    Math.round(weight * @total_time() * @currentEffort() * @get("altitudeFactor"))
+
   clearMap: ->
     @path_overlay?.setMap(null)
     if @waypoint_markers?
       _(@waypoint_markers).each (marker)-> marker.setMap(null)
 
-  updateGraph: ->
-    JourneyPlanner.App.graph.updateData(@get("elevation"), @get("total_distance"))
+  currentSpeed: ->
+    JourneyPlanner.SPEEDS[@get("mode")][JourneyPlanner.App.pace]
 
+  currentEffort: ->
+    JourneyPlanner.EFFORT[@get("mode")][JourneyPlanner.App.pace]
 
   updateMap: ->
     JourneyPlanner.App.map?.fitBounds(@steps.bounding_box())

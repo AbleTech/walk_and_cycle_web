@@ -17,42 +17,17 @@
     </head>
     <body>
       <div class="header_top">
-        <div class="header_block">
-            <div class="left">
-                <!-- / -->
-            </div>
-            <div class="middle">
-                <ul>
-                    <li style="border-left: none; padding-left: 4px;">
-                        <a href="/" class="selected">Home</a>
-                    </li>
-                    <li>
-                        <a href="/routing/help" class="selected" onclick="try{return window.goHelp()}catch(a){return true}">Intro</a>
-                    </li>
-                    <li>
-                        <a href="/routing/moremaps" class="selected">More Maps</a>
-                    </li>
-                    <li>
-                        <a href="/routing/terms" class="selected">Terms</a>
-                    </li>
-                    <li style="border-right: none; padding-right: 4px;">
-                        <a href="mailto:support@journeyplanner.org.nz" class="selected" >Contact &amp; Feedback</a>
-                    </li>
-                    <div class="clear">
-                        <!-- / -->
-                    </div>
-                </ul>
-            </div>
-            <div class="right">
-                <!-- / -->
-            </div>
-        </div>
-        <a href="/" title="Home">
-          <img alt="Journeyplanner_logo" src="/img/header/journeyplanner_logo.jpg" class="product_logo">
-        </a>
-        <img src='/img/header/gwrc_logo.png' class="council_logo" />
+        <%= partial "layouts/nav_block" %>
+        <% link_to "/", title: "Home" do %>
+          <%= image_tag 'header/journeyplanner_logo.jpg', class: "product_logo", alt: "Walking &amp; Cycling Journey Planner" %>
+        <% end %>
+        <% link_to "http://www.gw.govt.nz", target: "_blank" do %>
+          <%= image_tag "header/gwrc_logo.png", class: "council_logo" %>
+        <% end %>
       </div>
       <div class="header_bottom">
+         <%= yield_content :header_bar %>
+
          <div class="clear">
             <!-- / -->
         </div>
@@ -70,9 +45,8 @@
 
         <script type='text/javascript' src='http://www.addressfinder.co.nz/assets/v2/widget.js'></script>
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=geometry&sensor=false"></script>
-
         <script src="js/plugins.js"></script>
-        <script src="js/app.js"></script>
+        <%= yield_content :javascript %>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>

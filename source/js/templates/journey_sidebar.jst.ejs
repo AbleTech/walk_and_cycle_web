@@ -1,3 +1,12 @@
-<h4><%= description() %></h4>
-<p><%= totalDistance() %></p>
+<p class='text-center'><strong><%= startAddress(true) %></strong> to <strong><%= finishAddress(true) %></strong></p>
+<hr />
+<dl class="dl-horizontal info_bar">
+  <dt>Average Pace:</dt>
+  <dd><%= formattedTime() %></dd>
+  <dt>Total Distance:</dt>
+  <dd><%= totalDistance() %></dd>
+</dl>
+<hr />
+<div class='start_address'><span>Start</span> <%= startAddress() %></div>
 <ol></ol>
+<div class='finish_address'><span>End</span> <%= finishAddress() %></div>
