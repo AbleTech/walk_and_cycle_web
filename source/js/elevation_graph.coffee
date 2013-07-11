@@ -1,5 +1,5 @@
 class window.ElevationGraph
-  constructor: (element)->
+  constructor: (element, @journey)->
     @svg = d3.select(element).append("svg")
       .attr("width", 600)
       .attr("height", 120)
@@ -48,11 +48,17 @@ class window.ElevationGraph
       .y((d)=> @y_scale(d[1]))
 
     @paper.on "mousemove", =>
+      x_position = d3.event.offsetX - @margin.left
       @hover_line
-        .attr("x", d3.event.layerX - @margin.left)
+        .attr("x", x_position)
         .style("visibility", "visible")
+      @journey.showElevationMarker(x_position/@width)
+
     @paper.on "mouseleave", =>
       @hover_line.style("visibility", "hidden")
+      @journey.hideElevationMarker()
+
+    @updateData(@journey.get("elevation"), @journey.get("total_distance"))
 
 
 

@@ -60,6 +60,44 @@ class JourneyPlanner.Models.Journey extends Backbone.Model
   currentEffort: ->
     JourneyPlanner.EFFORT[@get("mode")][JourneyPlanner.App.pace]
 
+  elevation_marker:->
+    @_elevation_marker ||= new google.maps.Marker
+      map: JourneyPlanner.App.map
+      icon: @elevation_icon()
+
+  elevation_icon: ->
+    anchor: new google.maps.Point(14,34)
+    url: "/img/elevation_markers/icon_#{@get('mode')}.png"
+
+  showElevationMarker: (fraction=0)->
+    distance = fraction * @get("total_distance")
+    @elevation_marker().setOptions
+      position: @pointAlongPath(distance)
+      visible: true
+
+  hideElevationMarker: ->
+    @elevation_marker().setVisible(false)
+
+  pointAlongPath: (distance=0)->
+    interpolated_point = null
+    if @path_overlay?
+      cumulative_distance = 0
+      @path_overlay.getPath().forEach (point, index)=>
+        if index > 0 and interpolated_point == null
+          previous_point = @path_overlay.getPath().getAt(index - 1)
+          segment_length = google.maps.geometry.spherical.computeDistanceBetween(previous_point, point)
+          if (cumulative_distance + segment_length) > distance
+            distance_fraction = (distance - cumulative_distance) / segment_length
+            interpolated_point = google.maps.geometry.spherical.interpolate(previous_point, point, distance_fraction)
+            return
+          else
+            cumulative_distance += segment_length
+
+    interpolated_point
+
+
+
+
   updateMap: ->
     JourneyPlanner.App.map?.fitBounds(@steps.bounding_box())
 

@@ -11,8 +11,7 @@ class JourneyPlanner.Views.DetailsContent extends Marionette.ItemView
 
   onRender: ->
     if @model.get("elevation")
-      @graph = new ElevationGraph($("#elevation_graph", @el)[0])
-      @graph.updateData(@model.get("elevation"), @model.get("total_distance"))
+      @graph = new ElevationGraph($("#elevation_graph", @el)[0], @model)
 
   calculateCalories: ->
     weight = parseFloat($("#weight", @el).val())
