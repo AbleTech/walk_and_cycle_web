@@ -38,7 +38,7 @@ activate :directory_indexes
 # activate :automatic_image_sizes
 
 # Reload the browser automatically whenever files change
-activate :livereload
+activate :livereload, :host=>"192.168.1.156"
 
 # Methods defined in the helpers block are available in templates
 # helpers do

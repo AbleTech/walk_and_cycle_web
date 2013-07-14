@@ -7,9 +7,13 @@ class JourneyPlanner.Models.Journey extends Backbone.Model
   initialize: ->
     @waypoints = new JourneyPlanner.Collections.Waypoints()
     @steps     = new JourneyPlanner.Collections.Steps()
+    @set "pace", $.cookie("jp_speed") || "average"
+
     @on "change", =>
       @waypoints.reset(@get('waypoints'))
       @steps.reset(@get('steps'))
+    @on "change:pace", =>
+      $.cookie("jp_speed", @get("pace"))
     @on "sync", =>
       @updateMap() if @get("encoded_polyline")
       $("a[href='#results']").show().tab("show")
@@ -55,10 +59,10 @@ class JourneyPlanner.Models.Journey extends Backbone.Model
       _(@waypoint_markers).each (marker)-> marker.setMap(null)
 
   currentSpeed: ->
-    JourneyPlanner.SPEEDS[@get("mode")][JourneyPlanner.App.pace]
+    JourneyPlanner.SPEEDS[@get("mode")][@get("pace")]
 
   currentEffort: ->
-    JourneyPlanner.EFFORT[@get("mode")][JourneyPlanner.App.pace]
+    JourneyPlanner.EFFORT[@get("mode")][@get("pace")]
 
   elevation_marker:->
     @_elevation_marker ||= new google.maps.Marker
@@ -94,9 +98,6 @@ class JourneyPlanner.Models.Journey extends Backbone.Model
             cumulative_distance += segment_length
 
     interpolated_point
-
-
-
 
   updateMap: ->
     JourneyPlanner.App.map?.fitBounds(@steps.bounding_box())

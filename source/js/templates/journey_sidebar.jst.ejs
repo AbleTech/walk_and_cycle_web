@@ -1,7 +1,20 @@
 <p class='text-center'><strong><%= startAddress(true) %></strong> to <strong><%= finishAddress(true) %></strong></p>
 <hr />
 <dl class="dl-horizontal info_bar">
-  <dt>Average Pace:</dt>
+  <dt class='dropdown'>
+    <%= paceDescription() %> Pace: <a class='dropdown-toggle' data-toggle="dropdown" href='#' title="Change Pace"><i class="icon-caret-down"></i></a>
+    <ul id="pace-dropdown" class="dropdown-menu" role="menu" >
+      <li>
+        <a href='#' data-pace='fast'><%= speedDescription('fast') %></a>
+      </li>
+      <li>
+        <a href='#' data-pace='average'><%= speedDescription('average') %></a>
+      </li>
+      <li>
+        <a href='#' data-pace='slow'><%= speedDescription('slow') %></a>
+      </li>
+    </ul>
+  </dt>
   <dd><%= formattedTime() %></dd>
   <dt>Total Distance:</dt>
   <dd><%= totalDistance() %></dd>

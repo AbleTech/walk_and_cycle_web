@@ -7,8 +7,19 @@ class JourneyPlanner.Views.Sidebar extends Marionette.CompositeView
   itemViewContainer: "ol"
   template: JST["templates/journey_sidebar"]
 
+  events:
+    "click #pace-dropdown a": "changePace"
+
   initialize: ->
     @listenTo @model, "change", @render
+
+  changePace: (e)->
+    @model.set "pace", $(e.target).data("pace")
+    @render()
+    false
+
+  onDomRefresh: ->
+    $(".dropdown-toggle", @el).dropdown()
 
   templateHelpers: ->
 
@@ -32,8 +43,16 @@ class JourneyPlanner.Views.Sidebar extends Marionette.CompositeView
       if waypoints.size() > 0
         "<strong>#{waypoints.first().streetName()}</strong> to <strong>#{waypoints.last().streetName()}</strong>"
 
+    paceDescription: =>
+      _.titleize @model.get("pace")
+
+    speedDescription: (pace)=>
+      speed = JourneyPlanner.SPEEDS[@model.get("mode")][pace]
+      "#{_.titleize(pace)} pace - #{speed} km/hr"
+
+
     formattedTime: =>
-      time = @model.get("average_time")
+      time = @model.total_time()
       hours     = Math.floor(time/60.0)
       hour_str  = if hours == 1 then "hour" else "hours"
       minutes     = Math.round(time - (hours*60))

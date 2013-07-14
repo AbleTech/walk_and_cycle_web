@@ -7,9 +7,11 @@ class JourneyPlanner.Views.DetailsContent extends Marionette.ItemView
     "change #weight" : "calculateCalories"
 
   modelEvents:
-    "change": "render"
+    "sync": "render"
+    "change:pace": "calculateCalories"
 
   onRender: ->
+    $(".details_panel a:first").tab("show")
     if @model.get("elevation")
       @graph = new ElevationGraph($("#elevation_graph", @el)[0], @model)
 

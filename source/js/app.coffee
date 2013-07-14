@@ -41,6 +41,7 @@ JourneyPlanner.EFFORT =
     average:  0.1500
     fast:     0.2401
 
+
 JourneyPlanner.App.addRegions
   resultsRegion: $("#results")
   journeyFields: $("#journey_form fieldset")
@@ -58,8 +59,11 @@ JourneyPlanner.App.addInitializer (options)->
   google.maps.event.addListener @map, "maptypeid_changed", =>
     $.cookie "jp_maptype", @map.getMapTypeId()
 
-JourneyPlanner.App.addInitializer (options)->
-  @pace  = $.cookie("jp_speed") || "average"
+# JourneyPlanner.App.addInitializer (options)->
+#   @pace  = $.cookie("jp_speed") || "average"
+#   @updatePace = (new_pace)=>
+#     @pace = new_pace
+#     $.cookie("jp_speed", new_pace)
 
 JourneyPlanner.App.addInitializer (options)->
   $("#journey_form").submit (e)=>
