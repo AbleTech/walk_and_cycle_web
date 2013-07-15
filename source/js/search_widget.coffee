@@ -6,6 +6,8 @@ class window.SearchWidget extends AddressFinder.Widget
     @prefix = options.prefix
     @on "address:select", (value,data)=>
       @populateFields(value, data.x, data.y)
+    @on "location:select", (value,data)=>
+      @populateFields(value, data.x, data.y)
 
     @addGPSService() if Modernizr.geolocation
 

@@ -24,7 +24,7 @@ class JourneyPlanner.Views.WaypointFields extends Marionette.ItemView
     false
 
   submitForm: ->
-    $(@el).parent("form").submit()
+    $(@el).parents("form").submit()
 
 
 class JourneyPlanner.Views.JourneyForm extends Marionette.CompositeView
