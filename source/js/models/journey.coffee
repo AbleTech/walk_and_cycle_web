@@ -6,6 +6,7 @@ class JourneyPlanner.Models.Journey extends Backbone.Model
 
   initialize: ->
     @waypoints = new JourneyPlanner.Collections.Waypoints()
+    @waypoints.journey = @
     @steps     = new JourneyPlanner.Collections.Steps()
     @set "pace", $.cookie("jp_speed") || "average"
 

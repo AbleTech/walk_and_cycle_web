@@ -4,7 +4,14 @@ class JourneyPlanner.Models.Waypoint extends Backbone.Model
     {"a":"", "x":"", "y":""}
 
   getMarker: ->
-    @_marker ||= new google.maps.Marker({icon: @iconStyle(), title: @get("a"), position: @getLatLng()})
+    return @_marker if @_marker?
+    @_marker = new google.maps.Marker
+      icon: @iconStyle()
+      title: @get("a")
+      position: @getLatLng()
+      draggable: true
+    google.maps.event.addListener @_marker, "dragend", @updateWaypoint
+    @_marker
 
   index: ->
     @collection.indexOf(@)
@@ -35,6 +42,13 @@ class JourneyPlanner.Models.Waypoint extends Backbone.Model
       errors.push "missing x coordinate"
     unless attrs.y?.length > 0
       errors.push "missing y coordinate"
+
+  updateWaypoint: =>
+    new_point = @getMarker().getPosition()
+    AddressService.ClosestAddress.find new_point.lat(), new_point.lng(), (data)=>
+      if data
+        @set {a: data.a, x: data.x, y: data.y}
+        @trigger "update_point"
 
 
 class JourneyPlanner.Collections.Waypoints extends Backbone.Collection

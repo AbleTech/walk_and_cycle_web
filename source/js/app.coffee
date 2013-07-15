@@ -4,6 +4,7 @@
 #= require_tree ./templates
 #= require_tree ./views
 #= require search_widget
+#= require address_services
 #= require elevation_graph
 
 'use strict'

@@ -3,6 +3,10 @@ class JourneyPlanner.Views.WaypointFields extends Marionette.ItemView
   className: 'control-group'
   template: JST["templates/waypoint_fields"]
 
+  modelEvents:
+    "change" : "render"
+    "update_point" : "submitForm"
+
   events:
     "click a.close": "removeWaypoint"
 
@@ -18,6 +22,9 @@ class JourneyPlanner.Views.WaypointFields extends Marionette.ItemView
   removeWaypoint: ->
     @model.collection.remove(@model)
     false
+
+  submitForm: ->
+    $(@el).parent("form").submit()
 
 
 class JourneyPlanner.Views.JourneyForm extends Marionette.CompositeView
