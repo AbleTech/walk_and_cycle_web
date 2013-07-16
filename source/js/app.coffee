@@ -60,11 +60,15 @@ JourneyPlanner.App.addInitializer (options)->
   google.maps.event.addListener @map, "maptypeid_changed", =>
     $.cookie "jp_maptype", @map.getMapTypeId()
 
-# JourneyPlanner.App.addInitializer (options)->
-#   @pace  = $.cookie("jp_speed") || "average"
-#   @updatePace = (new_pace)=>
-#     @pace = new_pace
-#     $.cookie("jp_speed", new_pace)
+  @weather_layer = new google.maps.weather.WeatherLayer
+    temperatureUnits: google.maps.weather.TemperatureUnit.CELCIUS
+
+  @bike_layer = new google.maps.KmlLayer "http://journeyplanner.org.nz/mobile_combined-0.2.1.kml",
+    clickable: false
+    preserveViewport: true
+    suppressInfoWindows: true
+
+  @traffic_layer = new google.maps.TrafficLayer()
 
 JourneyPlanner.App.addInitializer (options)->
   $("#journey_form").submit (e)=>
