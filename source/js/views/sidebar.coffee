@@ -25,7 +25,7 @@ class JourneyPlanner.Views.Sidebar extends Marionette.CompositeView
 
     totalDistance: =>
       if distance = @model.get("total_distance")
-        if distance > 500
+        if distance > 1000
           "#{Math.round(distance / 100.0) / 10.0} km"
         else
           "#{Math.round(distance)} m"

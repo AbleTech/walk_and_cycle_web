@@ -8,7 +8,7 @@ class JourneyPlanner.DefaultRouter extends Backbone.Router
     @journey?.clearMap()
     @journey = new JourneyPlanner.Models.Journey {mode: params.mode}
     if params.waypoints?.length >= 2
-      @journey.waypoints.add params.waypoints
+      @journey.waypoints.add _(params.waypoints).compact()
     else
       @journey.waypoints.add [{},{}]
 

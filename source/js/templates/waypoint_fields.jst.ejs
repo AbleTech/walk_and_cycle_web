@@ -10,6 +10,6 @@
   <input id='waypoint_<%= fieldIndex() %>_x' name='waypoints[<%= fieldIndex() %>][x]' value="<%= x %>" type='hidden' required >
   <input id='waypoint_<%= fieldIndex() %>_y' name='waypoints[<%= fieldIndex() %>][y]' value="<%= y %>" type='hidden' required >
   <% if (showClose()){ %>
-    <a href='#' class="close">&times;</a>
+    <a href='#' class="close" title='Remove this destination'><i class='icon-remove-sign'></i></a>
   <% } %>
 </div>

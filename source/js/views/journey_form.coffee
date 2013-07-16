@@ -34,6 +34,9 @@ class JourneyPlanner.Views.JourneyForm extends Marionette.CompositeView
   events:
     "click a.add-waypoint" : "addWaypoint"
 
+  collectionEvents:
+    "remove" : "render"
+
   templateHelpers:->
     modeActive: (mode)=> if @model.get("mode") == mode then "active" else ""
     modeChecked: (mode)=> if @model.get("mode") == mode then "checked" else ""
