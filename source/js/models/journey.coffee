@@ -2,7 +2,7 @@ class JourneyPlanner.Models.Journey extends Backbone.Model
 
   defaults:
     mode: "walking"
-    altitudeFactor: 1.13046330315024
+    altitude_factor: 1.13046330315024
 
   initialize: ->
     @waypoints = new JourneyPlanner.Collections.Waypoints()
@@ -33,7 +33,7 @@ class JourneyPlanner.Models.Journey extends Backbone.Model
     query = "mode=#{@get('mode')}"
     @waypoints.each (waypoint)->
       query += "&#{waypoint.queryStr()}"
-    "http://www.journeyplanner.org.nz/api/route.json?callback=?&#{query}"
+    "http://192.168.1.171:17905/api/route.json?callback=?&#{query}"
 
   parse: (response,options)->
     if response.success and response.total > 0
@@ -52,7 +52,7 @@ class JourneyPlanner.Models.Journey extends Backbone.Model
     0.214 * (@get("total_distance")/1000)
 
   calculate_calories: (weight)->
-    Math.round(weight * @total_time() * @currentEffort() * @get("altitudeFactor"))
+    Math.round(weight * @total_time() * @currentEffort() * @get("altitude_factor"))
 
   clearMap: ->
     @path_overlay?.setMap(null)

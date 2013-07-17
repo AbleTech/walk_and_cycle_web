@@ -10,6 +10,9 @@ $btnPrimaryBackground: $orange;
 $btnPrimaryBackgroundHighlight: darken($orange, 10%);
 $btnSuccessBackground: lighten($teal, 5%);
 $btnSuccessBackgroundHighlight: darken($teal, 5%);
+$btnInfoBackground: white;
+$btnInfoBackgroundHighlight: white;
+
 
 $warningBorder: darken($orange, 5%);
 
@@ -31,3 +34,4 @@ body {
   color: #444;
   text-align: left;
 }
+

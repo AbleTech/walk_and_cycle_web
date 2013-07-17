@@ -54,6 +54,7 @@ JourneyPlanner.App.addInitializer (options)->
     zoom: 9
     mapTypeId: $.cookie("jp_maptype") || google.maps.MapTypeId.ROADMAP
     scaleControl: true
+    mapTypeControl: false
 
   @map = new google.maps.Map document.getElementById('mapdiv'), map_opts
 
@@ -69,6 +70,27 @@ JourneyPlanner.App.addInitializer (options)->
     suppressInfoWindows: true
 
   @traffic_layer = new google.maps.TrafficLayer()
+
+  $("#overlay-options li a").click (e)=>
+    @current_overlay?.setMap(null)
+    @current_overlay = switch $(e.target).data("overlay")
+      when "paths" then @bike_layer
+      when "traffic" then @traffic_layer
+      when "weather" then @weather_layer
+    @current_overlay?.setMap(@map)
+    $("#overlay-options").dropdown("toggle")
+    false
+  $("#maptype-options li a").click (e)=>
+    new_maptype = switch $(e.target).data("maptype")
+      when "map" then google.maps.MapTypeId.ROADMAP
+      when "terrain" then google.maps.MapTypeId.TERRAIN
+      when "aerial" then google.maps.MapTypeId.HYBRID
+    @map.setMapTypeId(new_maptype)
+    $("#maptype-options").dropdown("toggle")
+    false
+
+
+
 
 JourneyPlanner.App.addInitializer (options)->
   $("#journey_form").submit (e)=>
