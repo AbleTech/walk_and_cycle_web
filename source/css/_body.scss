@@ -1,6 +1,7 @@
 @import "compass/css3/box-shadow";
 @import "compass/css3/border-radius";
 @import "compass/css3/images";
+@import "compass/css3/transition";
 
 .big-icon{
   font-size:36px;
@@ -57,8 +58,12 @@
 }
 
 .right_body{
+  @include box-sizing(border-box);
   position: relative;
-  padding-bottom: 160px;
+  @include transition-property(padding-bottom);
+  @include transition-duration(500ms);
+  @include transition-timing-function(ease-out);
+  padding-bottom: 27px;
   #mapdiv{
     height: 100%;
     img{
@@ -71,11 +76,34 @@
   }
 
   .details_panel{
+    overflow: hidden;
     position:absolute;
     bottom: 0;
-    height: 160px;
-    .nav{
+    height: 27px;
+    width: 100%;
+    @include transition-property(height);
+    @include transition-duration(500ms);
+    @include transition-timing-function(ease-out);
+    #detail_hide{
+      display: none;
+    }
+    #detail_show{
+      display: inline;
+    }
+    .navbar{
       margin-bottom: 0;
+      .navbar-inner{
+        border-left: none;
+        border-right: none;
+        @include border-radius(0);
+      }
+      .brand{
+        font-size: 13px;
+        font-weight: bold;
+      }
+      ul.nav{
+        display: none;
+      }
     }
     .tab-pane{
       padding: 0 20px;
@@ -87,10 +115,29 @@
     right: 10px;
     .nav-pills > li > a{
       background: #fff;
+      background: rgba(#fff, 0.9);
       color: $teal !important;
       margin-left: 10px;
       @include box-shadow(rgba(#000, 0.3) 0 0 5px);
     }
+  }
+
+  &.expanded{
+    padding-bottom: 160px;
+    .details_panel{
+      height: 160px;
+      display: block;
+      #detail_hide{
+        display: inline;
+      }
+      #detail_show{
+        display: none;
+      }
+      ul.nav{
+        display: block;
+      }
+    }
+
   }
 }
 

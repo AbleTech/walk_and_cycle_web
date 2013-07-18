@@ -48,6 +48,33 @@ JourneyPlanner.App.addRegions
   journeyFields: $("#journey_form fieldset")
   detailContent: $("#detail_content")
 
+JourneyPlanner.App.addInitializer ->
+  @updateOverlay = (overlay)=>
+    @current_overlay?.setMap(null)
+    @current_overlay = switch overlay
+      when "paths" then @bike_layer
+      when "poi" then @pois
+      when "traffic" then @traffic_layer
+      when "weather" then @weather_layer
+    @current_overlay?.setMap(@map)
+    $.cookie("jp_overlay", overlay)
+
+  @updateMaptype = (maptype)=>
+    new_maptype = switch maptype
+      when "map" then google.maps.MapTypeId.ROADMAP
+      when "terrain" then google.maps.MapTypeId.TERRAIN
+      when "aerial" then google.maps.MapTypeId.HYBRID
+    @map.setMapTypeId(new_maptype)
+
+  $("#overlay-options li a").click (e)=>
+    @updateOverlay($(e.target).data("overlay"))
+    $("#overlay-options").dropdown("toggle")
+    false
+  $("#maptype-options li a").click (e)=>
+    @updateMaptype($(e.target).data("maptype"))
+    $("#maptype-options").dropdown("toggle")
+    false
+
 JourneyPlanner.App.addInitializer (options)->
   map_opts =
     center: new google.maps.LatLng(-41.105, 175.288)
@@ -61,6 +88,8 @@ JourneyPlanner.App.addInitializer (options)->
   google.maps.event.addListener @map, "maptypeid_changed", =>
     $.cookie "jp_maptype", @map.getMapTypeId()
 
+  @pois = new JourneyPlanner.Collections.PointsOfInterest()
+
   @weather_layer = new google.maps.weather.WeatherLayer
     temperatureUnits: google.maps.weather.TemperatureUnit.CELCIUS
 
@@ -71,26 +100,7 @@ JourneyPlanner.App.addInitializer (options)->
 
   @traffic_layer = new google.maps.TrafficLayer()
 
-  $("#overlay-options li a").click (e)=>
-    @current_overlay?.setMap(null)
-    @current_overlay = switch $(e.target).data("overlay")
-      when "paths" then @bike_layer
-      when "traffic" then @traffic_layer
-      when "weather" then @weather_layer
-    @current_overlay?.setMap(@map)
-    $("#overlay-options").dropdown("toggle")
-    false
-  $("#maptype-options li a").click (e)=>
-    new_maptype = switch $(e.target).data("maptype")
-      when "map" then google.maps.MapTypeId.ROADMAP
-      when "terrain" then google.maps.MapTypeId.TERRAIN
-      when "aerial" then google.maps.MapTypeId.HYBRID
-    @map.setMapTypeId(new_maptype)
-    $("#maptype-options").dropdown("toggle")
-    false
-
-
-
+  @updateOverlay($.cookie("jp_overlay")) if $.cookie("jp_overlay")?
 
 JourneyPlanner.App.addInitializer (options)->
   $("#journey_form").submit (e)=>
@@ -99,11 +109,24 @@ JourneyPlanner.App.addInitializer (options)->
     false
 
 JourneyPlanner.App.addInitializer (options)->
-  $(window).resize ->
-    $(".left_sidebar").height($(window).height() - 150)
-    $(".right_body").height($(window).height() - 310)
-  $(window).trigger("resize")
+  $("#detail_toggle").click =>
+    if $(".right_body").hasClass("expanded")
+      $(".right_body").removeClass("expanded")
+      $("#detail_toggle").html("<i class='icon-double-angle-up'></i> expand")
+    else
+      $(".right_body").addClass("expanded")
+      $("#detail_toggle").html("<i class='icon-double-angle-down'></i> hide")
+    setTimeout =>
+      google.maps.event.trigger(@map, 'resize')
+    , 500
+    false
 
+JourneyPlanner.App.addInitializer (options)->
+  $(window).resize ->
+    panel_height = $(window).height() - 150
+    $(".left_sidebar").height(panel_height)
+    $(".right_body").css("height", panel_height)
+  $(window).trigger("resize")
 
 JourneyPlanner.App.addInitializer (options)->
   @router = new JourneyPlanner.DefaultRouter()

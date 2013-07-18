@@ -22,7 +22,7 @@
       <p>&copy; 2013 Greater Wellington Regional Council</p>
     </footer>
   </div>
-  <div class="span9 right_body">
+  <div class="span9 expanded right_body">
     <div id='mapdiv' class='googlemap'></div>
     <div class="map-options">
       <ul class="nav nav-pills">
@@ -30,6 +30,7 @@
           <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">Extra Layers <i class="icon-caret-down"></i></a>
           <ul id="overlay-options" class='dropdown-menu' role="menu" >
             <li><a href='#' data-overlay="none">None</a></li>
+            <li><a href='#' data-overlay="poi">Points of Interest</a></li>
             <li><a href='#' data-overlay="paths">Paths</a></li>
             <li><a href='#' data-overlay='traffic'>Traffic</a></li>
             <li><a href="#" data-overlay='weather'>Weather</a></li>
@@ -46,33 +47,20 @@
       </ul>
     </div>
     <div class="details_panel">
-      <ul class='nav nav-pills'>
-        <li class='active'><%= link_to "Elevation", '#elevation', data: {toggle: "tab"} %></li>
-        <li><%= link_to "Calories", '#calories', data: {toggle: "tab"}  %></li>
-        <li><%= link_to "Health", '#health', data: {toggle: "tab"}  %></li>
-        <li><%= link_to "Car Costs", '#car_cost', data: {toggle: "tab"}  %></li>
-        <li><%= link_to "Carbon", '#carbon', data: {toggle: "tab"}  %></li>
-      </ul>
-      <div id='detail_content'>
-        <div class="tab-content">
-          <div class="tab-pane active" id="elevation">
-            <div id="elevation_graph"></div>
-          </div>
-          <div class="tab-pane" id="calories">
-
-          </div>
-          <div class="tab-pane" id="health">
-
-          </div>
-          <div class="tab-pane" id="car_cost">
-            <i class="icon-road big-icon"></i>
-          </div>
-          <div class="tab-pane" id="carbon">
-            <i class='icon-leaf big-icon'></i>
-          </div>
+      <div class="navbar">
+        <div class="navbar-inner">
+          <span class='brand'>Journey Information</span>
+          <ul class='nav'>
+            <li class='active'><%= link_to "Elevation", '#elevation', data: {toggle: "tab"} %></li>
+            <li><%= link_to "Calories", '#calories', data: {toggle: "tab"}  %></li>
+            <li><%= link_to "Health", '#health', data: {toggle: "tab"}  %></li>
+            <li><%= link_to "Car Costs", '#car_cost', data: {toggle: "tab"}  %></li>
+            <li><%= link_to "Carbon", '#carbon', data: {toggle: "tab"}  %></li>
+          </ul>
+          <a href='#' class="pull-right navbar-text" id="detail_toggle"><i class="icon-double-angle-down"></i> hide</a>
         </div>
       </div>
-
+      <div id='detail_content' ></div>
     </div>
   </div>
 </div>
