@@ -58,6 +58,7 @@
 }
 
 .right_body{
+  border-left: solid 1px $green;
   @include box-sizing(border-box);
   position: relative;
   @include transition-property(padding-bottom);
@@ -84,6 +85,7 @@
     @include transition-property(height);
     @include transition-duration(500ms);
     @include transition-timing-function(ease-out);
+    @include box-shadow( rgba(#000, 0.1)  0 0 5px);
     #detail_hide{
       display: none;
     }

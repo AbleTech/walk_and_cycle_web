@@ -10,7 +10,7 @@ class window.JPMap extends google.maps.Map
     super element, @map_opts
 
     google.maps.event.addListener @, "maptypeid_changed", =>
-      $.cookie "jp_maptype", @getMapTypeId()
+      $.cookie "jp_maptype", @getMapTypeId(), {path: "/", expires: 365}
 
     @setupLayers()
 
@@ -36,7 +36,7 @@ class window.JPMap extends google.maps.Map
       when "traffic" then @traffic_layer
       when "weather" then @weather_layer
     @current_overlay?.setMap(@)
-    $.cookie("jp_overlay", overlay)
+    $.cookie "jp_overlay", overlay, {path: "/", expires: 365}
 
   updateMaptype: (maptype)=>
     new_maptype = switch maptype

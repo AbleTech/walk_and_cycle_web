@@ -50,6 +50,13 @@ JourneyPlanner.App.addRegions
   detailContent: $("#detail_content")
 
 JourneyPlanner.App.addInitializer (options)->
+  $(window).resize ->
+    panel_height = $(window).height() - 150
+    $(".left_sidebar").height(panel_height)
+    $(".right_body").css("height", panel_height)
+  $(window).trigger("resize")
+
+JourneyPlanner.App.addInitializer (options)->
   @map = new JPMap document.getElementById('mapdiv')
   @map.updateOverlay($.cookie("jp_overlay")) if $.cookie("jp_overlay")?
 
@@ -82,12 +89,7 @@ JourneyPlanner.App.addInitializer (options)->
     , 500
     false
 
-JourneyPlanner.App.addInitializer (options)->
-  $(window).resize ->
-    panel_height = $(window).height() - 150
-    $(".left_sidebar").height(panel_height)
-    $(".right_body").css("height", panel_height)
-  $(window).trigger("resize")
+
 
 JourneyPlanner.App.addInitializer (options)->
   @router = new JourneyPlanner.DefaultRouter()

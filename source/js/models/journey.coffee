@@ -14,7 +14,7 @@ class JourneyPlanner.Models.Journey extends Backbone.Model
       @waypoints.reset(@get('waypoints'))
       @steps.reset(@get('steps'))
     @on "change:pace", =>
-      $.cookie("jp_speed", @get("pace"))
+      $.cookie("jp_speed", @get("pace"), {path: "/", expires: 365})
     @on "sync", =>
       @updateMap() if @get("encoded_polyline")
       $("a[href='#results']").show().tab("show")
