@@ -6,6 +6,7 @@
 #= require search_widget
 #= require address_services
 #= require elevation_graph
+#= require jp_map
 
 'use strict'
 window.JourneyPlanner =
@@ -48,59 +49,19 @@ JourneyPlanner.App.addRegions
   journeyFields: $("#journey_form fieldset")
   detailContent: $("#detail_content")
 
+JourneyPlanner.App.addInitializer (options)->
+  @map = new JPMap document.getElementById('mapdiv')
+  @map.updateOverlay($.cookie("jp_overlay")) if $.cookie("jp_overlay")?
+
 JourneyPlanner.App.addInitializer ->
-  @updateOverlay = (overlay)=>
-    @current_overlay?.setMap(null)
-    @current_overlay = switch overlay
-      when "paths" then @bike_layer
-      when "poi" then @pois
-      when "traffic" then @traffic_layer
-      when "weather" then @weather_layer
-    @current_overlay?.setMap(@map)
-    $.cookie("jp_overlay", overlay)
-
-  @updateMaptype = (maptype)=>
-    new_maptype = switch maptype
-      when "map" then google.maps.MapTypeId.ROADMAP
-      when "terrain" then google.maps.MapTypeId.TERRAIN
-      when "aerial" then google.maps.MapTypeId.HYBRID
-    @map.setMapTypeId(new_maptype)
-
   $("#overlay-options li a").click (e)=>
-    @updateOverlay($(e.target).data("overlay"))
+    @map.updateOverlay($(e.target).data("overlay"))
     $("#overlay-options").dropdown("toggle")
     false
   $("#maptype-options li a").click (e)=>
-    @updateMaptype($(e.target).data("maptype"))
+    @map.updateMaptype($(e.target).data("maptype"))
     $("#maptype-options").dropdown("toggle")
     false
-
-JourneyPlanner.App.addInitializer (options)->
-  map_opts =
-    center: new google.maps.LatLng(-41.105, 175.288)
-    zoom: 9
-    mapTypeId: $.cookie("jp_maptype") || google.maps.MapTypeId.ROADMAP
-    scaleControl: true
-    mapTypeControl: false
-
-  @map = new google.maps.Map document.getElementById('mapdiv'), map_opts
-
-  google.maps.event.addListener @map, "maptypeid_changed", =>
-    $.cookie "jp_maptype", @map.getMapTypeId()
-
-  @pois = new JourneyPlanner.Collections.PointsOfInterest()
-
-  @weather_layer = new google.maps.weather.WeatherLayer
-    temperatureUnits: google.maps.weather.TemperatureUnit.CELCIUS
-
-  @bike_layer = new google.maps.KmlLayer "http://journeyplanner.org.nz/mobile_combined-0.2.1.kml",
-    clickable: false
-    preserveViewport: true
-    suppressInfoWindows: true
-
-  @traffic_layer = new google.maps.TrafficLayer()
-
-  @updateOverlay($.cookie("jp_overlay")) if $.cookie("jp_overlay")?
 
 JourneyPlanner.App.addInitializer (options)->
   $("#journey_form").submit (e)=>
