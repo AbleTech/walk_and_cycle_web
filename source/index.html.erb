@@ -66,4 +66,9 @@
 </div>
 <% content_for :javascript do %>
   <%= javascript_include_tag "app" %>
+  <script type="text/javascript">
+    JourneyPlanner.App.addInitializer(function(){
+      this.walking_examples.reset(<%= data.examples.to_json() %>);
+    });
+  </script>
 <% end %>

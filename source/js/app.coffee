@@ -46,6 +46,7 @@ JourneyPlanner.EFFORT =
 
 JourneyPlanner.App.addRegions
   resultsRegion: $("#results")
+  examplesRegion: $("#examples")
   journeyFields: $("#journey_form fieldset")
   detailContent: $("#detail_content")
 
@@ -59,6 +60,22 @@ JourneyPlanner.App.addInitializer (options)->
 JourneyPlanner.App.addInitializer (options)->
   @map = new JPMap document.getElementById('mapdiv')
   @map.updateOverlay($.cookie("jp_overlay")) if $.cookie("jp_overlay")?
+
+JourneyPlanner.App.addInitializer (options)->
+  @walking_examples = new JourneyPlanner.Collections.ExampleJourneys()
+  @examplesRegion.show new JourneyPlanner.Views.ExampleList({collection: @walking_examples})
+
+JourneyPlanner.App.addInitializer (options)->
+  @showResults = =>
+    @walking_examples.hideOverlays()
+    @router?.journey?.showOverlays(@map)
+  @showExamples = =>
+    @walking_examples.showOverlays(@map)
+    @router?.journey?.hideOverlays()
+
+  $("a[href='#examples']").on "show", @showExamples
+  $("a[href='#results']").on "show", @showResults
+
 
 JourneyPlanner.App.addInitializer ->
   $("#overlay-options li a").click (e)=>
@@ -89,13 +106,16 @@ JourneyPlanner.App.addInitializer (options)->
     , 500
     false
 
-
-
 JourneyPlanner.App.addInitializer (options)->
   @router = new JourneyPlanner.DefaultRouter()
-  Backbone.history.start({pushState: true})
+  @on "initialize:after", =>
+    Backbone.history.start({pushState: true}) if Backbone.history
 
 $(document).ready ->
   JourneyPlanner.App.start()
+
+  setTimeout ->
+    window.scrollTo(0, 1)
+  , 1000
 
 

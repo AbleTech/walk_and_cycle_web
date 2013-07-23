@@ -22,6 +22,12 @@
   }
 }
 
+#examples{
+  li.highlight{
+    background: $greenLight;
+  }
+}
+
 .green_box{
   @extend .well;
   background: $greenLight;

@@ -54,11 +54,6 @@ class JourneyPlanner.Models.Journey extends Backbone.Model
   calculate_calories: (weight)->
     Math.round(weight * @total_time() * @currentEffort() * @get("altitude_factor"))
 
-  clearMap: ->
-    @path_overlay?.setMap(null)
-    if @waypoint_markers?
-      _(@waypoint_markers).each (marker)-> marker.setMap(null)
-
   currentSpeed: ->
     JourneyPlanner.SPEEDS[@get("mode")][@get("pace")]
 
@@ -85,11 +80,11 @@ class JourneyPlanner.Models.Journey extends Backbone.Model
 
   pointAlongPath: (distance=0)->
     interpolated_point = null
-    if @path_overlay?
+    if @polyline()?
       cumulative_distance = 0
-      @path_overlay.getPath().forEach (point, index)=>
+      @polyline().getPath().forEach (point, index)=>
         if index > 0 and interpolated_point == null
-          previous_point = @path_overlay.getPath().getAt(index - 1)
+          previous_point = @polyline().getPath().getAt(index - 1)
           segment_length = google.maps.geometry.spherical.computeDistanceBetween(previous_point, point)
           if (cumulative_distance + segment_length) > distance
             distance_fraction = (distance - cumulative_distance) / segment_length
@@ -100,20 +95,32 @@ class JourneyPlanner.Models.Journey extends Backbone.Model
 
     interpolated_point
 
-  updateMap: ->
-    JourneyPlanner.App.map?.fitBounds(@steps.bounding_box())
+  showOverlays: (map)->
+    @polyline()?.setMap(map)
+    for marker in @waypointMarkers()
+      marker.setMap(map)
 
-    @path_overlay = new google.maps.Polyline
-      map: JourneyPlanner.App.map
-      path: google.maps.geometry.encoding.decodePath(@get("encoded_polyline").polyline)
-      strokeColor: "#2564a5"
-      strokeWeight: 4
-      strokeOpacity: 0.7
+  hideOverlays: ->
+    @showOverlays(null)
 
-    @waypoint_markers = []
-    @waypoints.each (waypoint)=>
+  polyline: ->
+    if @get("encoded_polyline")
+      @_polyline ||= new google.maps.Polyline
+        map: JourneyPlanner.App.map
+        path: google.maps.geometry.encoding.decodePath(@get("encoded_polyline").polyline)
+        strokeColor: "#2564a5"
+        strokeWeight: 4
+        strokeOpacity: 0.7
+
+  waypointMarkers: ->
+    @waypoints.map (waypoint)=>
       marker = waypoint.getMarker()
-      marker.setMap(JourneyPlanner.App.map)
-      @waypoint_markers.push(marker)
+      marker
+
+  updateMap: ->
+    if JourneyPlanner.App.map?
+      JourneyPlanner.App.map.fitBounds(@steps.bounding_box())
+      @showOverlays(JourneyPlanner.App.map)
+
 
 
