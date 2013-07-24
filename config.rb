@@ -4,7 +4,6 @@
 
 # Change Compass configuration
 # compass_config do |config|
-#   config.output_style = :compact
 # end
 
 ###
@@ -38,7 +37,7 @@ activate :directory_indexes
 # activate :automatic_image_sizes
 
 # Reload the browser automatically whenever files change
-activate :livereload, :host=>"192.168.1.156"
+activate :livereload
 
 # Methods defined in the helpers block are available in templates
 # helpers do
@@ -54,7 +53,6 @@ set :js_dir, 'js'
 set :images_dir, 'img'
 
 sprockets.append_path 'components'
-
 
 # Build-specific configuration
 configure :build do

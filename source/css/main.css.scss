@@ -24,13 +24,13 @@ $warningBorder: darken($orange, 5%);
 
 $sansFontFamily: 'Lato', sans-serif;
 
-$FontAwesomePath: "../components/font-awesome/font";
-@import "sass-bootstrap/lib/bootstrap";
+$FontAwesomePath: "/components/font-awesome/font";
+@import "sass-bootstrap/lib/bootstrap.scss";
 @import "font-awesome/scss/font-awesome.scss";
-@import "./_header";
-@import "./_body";
-@import "./_graph";
-@import "./_search_widget";
+@import "header";
+@import "body";
+@import "graph";
+@import "search_widget";
 
 body {
   margin: 0;

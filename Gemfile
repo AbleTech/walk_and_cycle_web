@@ -14,6 +14,16 @@ gem "middleman-livereload", "~> 3.1.0"
 gem "eco", "~> 1.0.0"
 gem "ejs", "~> 1.1.1"
 
+# Guard
+gem 'guard'
+
+# Tests
+gem 'guard-rspec'
+gem 'rspec'
+gem "capybara"
+gem 'selenium-webdriver'
+gem 'launchy'
+
 
 # Cross-templating language block fix for Ruby 1.8
 platforms :mri_18 do
