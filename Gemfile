@@ -23,7 +23,7 @@ gem 'rspec'
 gem "capybara"
 gem 'selenium-webdriver'
 gem 'launchy'
-
+gem 'middleman-jasmine'
 
 # Cross-templating language block fix for Ruby 1.8
 platforms :mri_18 do

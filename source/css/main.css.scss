@@ -25,8 +25,8 @@ $warningBorder: darken($orange, 5%);
 $sansFontFamily: 'Lato', sans-serif;
 
 $FontAwesomePath: "/components/font-awesome/font";
-@import "sass-bootstrap/lib/bootstrap.scss";
-@import "font-awesome/scss/font-awesome.scss";
+@import "sass-bootstrap/lib/bootstrap";
+@import "font-awesome/scss/font-awesome";
 @import "header";
 @import "body";
 @import "graph";

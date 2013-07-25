@@ -29,6 +29,8 @@
 
 activate :directory_indexes
 
+
+activate :jasmine
 ###
 # Helpers
 ###

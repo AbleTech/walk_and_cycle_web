@@ -38,9 +38,9 @@ class JourneyPlanner.Models.Waypoint extends Backbone.Model
 
   validate: (attrs, options)->
     errors = []
-    unless attrs.x?.length > 0
+    unless attrs.x
       errors.push "missing x coordinate"
-    unless attrs.y?.length > 0
+    unless attrs.y
       errors.push "missing y coordinate"
 
   updateWaypoint: =>
