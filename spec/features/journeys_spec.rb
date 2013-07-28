@@ -6,7 +6,7 @@ describe "#index", type: :feature, js: true do
       visit "/"
     end
 
-    xit { find("#examples").visible?.should be_true }
+    it { find("#examples").visible?.should be_true }
     it { find("#results").visible?.should be_false }
 
     it "should populate address fields" do
@@ -34,10 +34,10 @@ describe "#index", type: :feature, js: true do
     end
     it { find("#examples").visible?.should be_false }
     it { find("#results").visible?.should be_true }
-    it { find("#results").should have_content "184 Willis Street to 260 Tinakori Road" }
-    it { find("#calories").should have_content "Calories burned: 151" }
-    it { find("#health").should have_content "Monetary health savings per trip: $7.21" }
-    it { find("#car_cost").should have_content "Vehicle cost savings per trip: $1.43" }
-    it { find("#carbon").should have_content "Carbon emissions saved per trip: 0.4kg" }
+    it { find("#results").should have_content   "184 Willis Street to 260 Tinakori Road"  }
+    it { find("#calories").should have_content  "Calories burned: 151"                    }
+    it { find("#health").should have_content    "Monetary health savings per trip: $7.21" }
+    it { find("#car_cost").should have_content  "Vehicle cost savings per trip: $1.43"    }
+    it { find("#carbon").should have_content    "Carbon emissions saved per trip: 0.4kg"  }
   end
 end

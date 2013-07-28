@@ -1,4 +1,8 @@
-class JourneyPlanner.Models.ExampleJourney extends Backbone.Model
+class JourneyPlanner.Models.ExampleJourney extends JourneyPlanner.Models.Journey
+
+  initialize: ->
+    @waypoints = new JourneyPlanner.Collections.Waypoints()
+    @waypoints.reset(@get('waypoints'))
 
   visible: ->
     @get("mode") == @collection.mode
@@ -13,7 +17,17 @@ class JourneyPlanner.Models.ExampleJourney extends Backbone.Model
       title: @get("name")
     google.maps.event.addListener @_polyline, "mouseover", @highlight
     google.maps.event.addListener @_polyline, "mouseout", @unhighlight
+    google.maps.event.addListener @_polyline, "click", @showExample
     @_polyline
+
+  queryString: ->
+    query = "?mode=#{@get('mode')}"
+    @waypoints.each (waypoint)->
+      query += "&#{waypoint.queryStr()}"
+    query
+
+  showExample: =>
+    JourneyPlanner.App.router.navigate @queryString(), {trigger: true, replace: true}
 
   highlight: =>
     @polyline().setOptions
@@ -30,7 +44,6 @@ class JourneyPlanner.Collections.ExampleJourneys extends Backbone.Collection
   model: JourneyPlanner.Models.ExampleJourney
   mode: "walking"
 
-
   updateMode: (new_mode)->
     @mode = new_mode
     @resetOverlays()
@@ -40,7 +53,7 @@ class JourneyPlanner.Collections.ExampleJourneys extends Backbone.Collection
     @forEach (model)=>
       if model.visible() then model.polyline().setMap(map) else model.polyline().setMap(null)
 
-  showOverlays: (map=JourneyPlanner.App.map)->
+  showOverlays: (map)->
     @forEach (model)=>
       model.polyline().setMap(map) if model.visible()
 

@@ -8,6 +8,7 @@ class JourneyPlanner.DefaultRouter extends Backbone.Router
     @journey?.hideOverlays()
     if params.example?
       @journey = new JourneyPlanner.Models.Journey {example: params.example}
+      @journey.waypoints.add [{},{}]
     else
       @journey = new JourneyPlanner.Models.Journey {mode: params.mode}
       if params.waypoints?.length >= 2

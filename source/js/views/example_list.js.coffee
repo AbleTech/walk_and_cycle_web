@@ -23,7 +23,7 @@ class JourneyPlanner.Views.ExampleItem extends Marionette.ItemView
 
   showExample: (e)->
     e.preventDefault()
-    JourneyPlanner.App.router.navigate("?example=#{@model.id}", {trigger: true, replace: true})
+    @model.showExample()
     false
 
 
@@ -40,6 +40,7 @@ class JourneyPlanner.Views.ExampleList extends Marionette.CompositeView
 
   updateMode: (e)->
     @collection.updateMode $(e.target).data("mode")
+    false
 
 
   appendHtml: (collectionView, itemView, index)->

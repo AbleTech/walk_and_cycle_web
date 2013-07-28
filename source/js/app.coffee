@@ -1,5 +1,9 @@
 #= require_self
-#= require_tree ./models
+#= require ./models/point_of_interest
+#= require ./models/waypoint
+#= require ./models/step
+#= require ./models/journey
+#= require ./models/example_journey
 #= require_tree ./routers
 #= require_tree ./templates
 #= require_tree ./views

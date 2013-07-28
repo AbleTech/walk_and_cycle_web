@@ -21,12 +21,13 @@ class JourneyPlanner.Models.Journey extends Backbone.Model
 
   validate: (attrs, options)->
     errors = []
-    unless _(["walking", "cycling"]).indexOf(attrs.mode) >= 0
-      errors.push "#{attrs.mode} is not a valid mode"
+    unless @get("example")
+      unless _(["walking", "cycling"]).indexOf(attrs.mode) >= 0
+        errors.push "#{attrs.mode} is not a valid mode"
 
-    valid_waypoints = @waypoints.filter (waypoint)-> waypoint.isValid()
-    unless valid_waypoints.length > 1
-      errors.push "you need a minimum of two waypoints"
+      valid_waypoints = @waypoints.filter (waypoint)-> waypoint.isValid()
+      unless valid_waypoints.length > 1
+        errors.push "you need a minimum of two waypoints"
     return errors if errors.length > 0
 
   url: ->
