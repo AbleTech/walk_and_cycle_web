@@ -23,6 +23,9 @@
 }
 
 #examples{
+  #example_modes a.selected{
+    font-weight: bold;
+  }
   li.highlight{
     background: $greenLight;
   }

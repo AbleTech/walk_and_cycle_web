@@ -46,3 +46,6 @@ class JourneyPlanner.Views.ExampleList extends Marionette.CompositeView
   appendHtml: (collectionView, itemView, index)->
     collectionView.$("ol").append(itemView.el) if itemView.model.visible()
 
+  templateHelpers:->
+    modeSelected: (mode)=> if @collection.mode == mode then "selected" else ""
+
