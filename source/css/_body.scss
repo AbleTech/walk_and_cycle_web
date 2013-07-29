@@ -41,6 +41,18 @@
   }
 }
 
+#journey_form{
+  div.controls{
+    padding-right: 25px;
+    position: relative;
+    a.close{
+      position: absolute;
+      right: 0;
+      top:6px;
+    }
+  }
+}
+
 #mode-toggle-btns{
   label.active{
     font-weight:bold;
@@ -48,22 +60,21 @@
   input[name='mode']{
     display:none;
   }
+  i{
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    line-height: 15px;
+    margin-right: 5px;
+    margin-top: 1px;
+    background: image-url('mode-icons.png');
+  }
   i.walking-icon{
-    background: image-url('walking.png') center no-repeat;
+    background-position: -2px -36px;
   }
   i.cycling-icon{
-    background: image-url('cycling.png') center no-repeat;
+    background-position: -2px -2px;
   }
-  i.walking-icon, i.cycling-icon{
-    display: inline-block;
-    width: 14px;
-    height: 14px;
-    line-height: 14px;
-    background-size: 14px 14px;
-    margin-top: 1px;
-    margin-right: 5px;
-  }
-
 }
 
 .right_body{

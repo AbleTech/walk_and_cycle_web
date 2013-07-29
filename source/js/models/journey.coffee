@@ -98,8 +98,8 @@ class JourneyPlanner.Models.Journey extends Backbone.Model
 
   showOverlays: (map)->
     @polyline()?.setMap(map)
-    for marker in @waypointMarkers()
-      marker.setMap(map)
+    @waypoints.each (waypoint)->
+      waypoint.getMarker().setMap(map)
 
   hideOverlays: ->
     @showOverlays(null)

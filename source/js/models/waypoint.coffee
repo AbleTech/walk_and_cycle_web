@@ -1,5 +1,9 @@
 class JourneyPlanner.Models.Waypoint extends Backbone.Model
 
+  initialize: ->
+    @on "remove", =>
+      @getMarker().setMap(null)
+
   defaults: ->
     {"a":"", "x":"", "y":""}
 
@@ -47,7 +51,7 @@ class JourneyPlanner.Models.Waypoint extends Backbone.Model
     new_point = @getMarker().getPosition()
     AddressService.ClosestAddress.find new_point.lat(), new_point.lng(), (data)=>
       if data
-        @set {a: data.a, x: data.x, y: data.y}
+        @set {a: data.a, x: new_point.lng(), y: new_point.lat()}
         @trigger "update_point"
 
 

@@ -1,4 +1,4 @@
-@import "./_colors";
+@import "colors";
 @import url(http://fonts.googleapis.com/css?family=Lato:300,700);
 
 $iconSpritePath: "../img/glyphicons-halflings.png";
@@ -31,6 +31,7 @@ $sansFontFamily: 'Lato', sans-serif;
 @import "body";
 @import "graph";
 @import "search_widget";
+@import "retina";
 
 body {
   margin: 0;
