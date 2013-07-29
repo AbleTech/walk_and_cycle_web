@@ -1,0 +1,1 @@
+!function(){this.JST||(this.JST={}),this.JST["templates/example_item"]=function(obj){var __p=[];with(obj||{})__p.push('<h6><a class="journey_name" href="#">',name,"</a></h6>\n<p>",description,"</p>\n");return __p.join("")}}.call(this);
