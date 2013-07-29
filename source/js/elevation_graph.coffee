@@ -29,6 +29,8 @@ class window.ElevationGraph
       .attr("width", @width)
       .attr("height", @height)
       .attr("class", "bg_rect")
+      .style("fill-opacity",0)
+      .style("stroke", "none")
 
     @hover_line = @paper.append("rect")
       .attr("x", 0)

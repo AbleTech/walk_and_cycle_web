@@ -45,6 +45,12 @@
         <script type='text/javascript' src='http://www.addressfinder.co.nz/assets/v2/widget.js'></script>
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=geometry,weather&sensor=false"></script>
         <script src="js/plugins.js"></script>
+        <!--[if lte IE 8]>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/r2d3/0.2.0/r2d3.min.js" type='text/javascript' charset="utf-8"></script>
+        <![endif]-->
+        <!--[if gte IE 9]><!-->
+        <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.2.2/d3.v3.min.js" type='text/javascript'></script>
+        <!--<![endif]-->
         <%= yield_content :javascript %>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->

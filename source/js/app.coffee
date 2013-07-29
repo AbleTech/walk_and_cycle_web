@@ -113,7 +113,7 @@ JourneyPlanner.App.addInitializer (options)->
 JourneyPlanner.App.addInitializer (options)->
   @router = new JourneyPlanner.DefaultRouter()
   @on "initialize:after", =>
-    Backbone.history.start({pushState: true, root: document.location.pathname}) if Backbone.history
+    Backbone.history.start({pushState: true, root: document.location.pathname, hashChange: false}) if Backbone.history
 
 $(document).ready ->
   JourneyPlanner.App.start()

@@ -2,7 +2,7 @@
 //= require underscore/underscore
 //= require backbone/backbone
 //= require backbone.marionette/lib/backbone.marionette
-//= require d3/d3
+// require d3/d3
 //= require jquery.cookie/jquery.cookie
 //= require underscore.string/lib/underscore.string
 //= require vendor/bootstrap

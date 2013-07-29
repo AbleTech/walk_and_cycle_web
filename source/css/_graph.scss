@@ -11,7 +11,8 @@
   }
 }
 .elevation_area {
-  fill: rgba($green, 0.35);
+  fill: $green;
+  fill-opacity: 0.35;
   stroke: none;
 }
 .elevation_stroke{
