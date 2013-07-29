@@ -29,7 +29,7 @@ class window.ElevationGraph
       .attr("width", @width)
       .attr("height", @height)
       .attr("class", "bg_rect")
-      .style("fill-opacity",0)
+      .style("fill","#ffffff")
       .style("stroke", "none")
 
     @hover_line = @paper.append("rect")
@@ -79,6 +79,8 @@ class window.ElevationGraph
       .datum(elevation_data.data)
       .attr("class","elevation_area")
       .attr("d", @area)
+      .style("fill", "#b3c533")
+      .style("fill-opacity", 0.35)
 
     @axes.append("g")
       .attr("class", "x_axis")
@@ -104,5 +106,7 @@ class window.ElevationGraph
       .datum(elevation_data.data)
       .attr("class", "elevation_stroke")
       .attr("d", @line)
+      .style("stroke", "#b3c533")
+      .style("fill", "none")
 
 
