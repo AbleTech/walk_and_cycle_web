@@ -34,7 +34,7 @@ class JourneyPlanner.Models.Journey extends Backbone.Model
     query = "mode=#{@get('mode')}"
     @waypoints.each (waypoint)->
       query += "&#{waypoint.queryStr()}"
-    "http://192.168.1.171:17905/api/route.json?callback=?&#{query}"
+    "http://staging.journeyplanner.org.nz/api/route.json?callback=?&#{query}"
 
   parse: (response,options)->
     if response.success and response.total > 0
@@ -68,7 +68,7 @@ class JourneyPlanner.Models.Journey extends Backbone.Model
 
   elevation_icon: ->
     anchor: new google.maps.Point(14,34)
-    url: "/img/elevation_markers/icon_#{@get('mode')}.png"
+    url: "img/elevation_markers/icon_#{@get('mode')}.png"
 
   showElevationMarker: (fraction=0)->
     distance = fraction * @get("total_distance")

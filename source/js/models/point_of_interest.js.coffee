@@ -46,7 +46,7 @@ class JourneyPlanner.Models.PointOfInterest extends Backbone.Model
       icon: @icon()
 
   icon: ->
-    url: "/img/poi_markers.png"
+    url: "img/poi_markers.png"
     anchor: new google.maps.Point(10, 10)
     origin: new google.maps.Point(@sprite_coords[@get("poi_type")]...)
     size: new google.maps.Size(20, 20)
@@ -62,7 +62,7 @@ class JourneyPlanner.Models.PointOfInterest extends Backbone.Model
 class JourneyPlanner.Collections.PointsOfInterest extends Backbone.Collection
   model: JourneyPlanner.Models.PointOfInterest
 
-  url: -> "http://192.168.1.171:17905/api/poi.json?callback=?&bounds=#{@bounds}&zoom=#{@zoom}"
+  url: -> "http://staging.journeyplanner.org.nz/api/poi.json?callback=?&bounds=#{@bounds}&zoom=#{@zoom}"
 
   setMap: (map)->
     if map? then @show() else @hide()

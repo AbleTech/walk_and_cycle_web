@@ -11,8 +11,9 @@
         <meta name="viewport" content="width=device-width, initial-scale = 1">
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <%= stylesheet_link_tag :main %>
+        <%= stylesheet_link_tag "//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.min.css" %>
         <!-- build:js scripts/vendor/modernizr.js -->
-        <script src="components/modernizr/modernizr.js"></script>
+        <%= javascript_include_tag "vendor/modernizr" %>
         <!-- endbuild -->
     </head>
     <body>
