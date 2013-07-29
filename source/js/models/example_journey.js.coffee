@@ -20,11 +20,25 @@ class JourneyPlanner.Models.ExampleJourney extends JourneyPlanner.Models.Journey
     google.maps.event.addListener @_polyline, "click", @showExample
     @_polyline
 
+  exampleMarker: ->
+    return @_example_marker if @_example_marker?
+    @_example_marker = new google.maps.Marker
+      position: @halfwayPoint()
+      title: @get("name")
+    google.maps.event.addListener @_example_marker, "mouseover", @highlight
+    google.maps.event.addListener @_example_marker, "mouseout", @unhighlight
+    google.maps.event.addListener @_example_marker, "click", @showExample
+    @_example_marker
+
   queryString: ->
     query = "?mode=#{@get('mode')}"
     @waypoints.each (waypoint)->
       query += "&#{waypoint.queryStr()}"
     query
+
+  halfwayPoint: =>
+    distance = 0.5 * @get("total_distance")
+    @pointAlongPath(distance)
 
   showExample: =>
     JourneyPlanner.App.router.navigate @queryString(), {trigger: true, replace: true}
@@ -51,11 +65,18 @@ class JourneyPlanner.Collections.ExampleJourneys extends Backbone.Collection
 
   resetOverlays:(map=JourneyPlanner.App.map)->
     @forEach (model)=>
-      if model.visible() then model.polyline().setMap(map) else model.polyline().setMap(null)
+      if model.visible()
+        model.polyline().setMap(map)
+        model.exampleMarker().setMap(map)
+      else
+        model.polyline().setMap(null)
+        model.exampleMarker().setMap(null)
 
   showOverlays: (map)->
     @forEach (model)=>
-      model.polyline().setMap(map) if model.visible()
+      if model.visible()
+        model.polyline().setMap(map)
+        model.exampleMarker().setMap(map)
 
   hideOverlays: ->
     @showOverlays(null)
