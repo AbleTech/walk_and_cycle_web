@@ -77,6 +77,14 @@
   }
 }
 
+.example_marker_label{
+  color: red;
+   font-size: 12px;
+   text-align: center;
+   width: 23px;
+   white-space: nowrap;
+}
+
 .right_body{
   border-left: solid 1px $green;
   @include box-sizing(border-box);

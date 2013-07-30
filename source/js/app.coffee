@@ -66,15 +66,16 @@ JourneyPlanner.App.addInitializer (options)->
   @map.updateOverlay($.cookie("jp_overlay")) if $.cookie("jp_overlay")?
 
 JourneyPlanner.App.addInitializer (options)->
-  @walking_examples = new JourneyPlanner.Collections.ExampleJourneys()
-  @examplesRegion.show new JourneyPlanner.Views.ExampleList({collection: @walking_examples})
+  @all_examples = new JourneyPlanner.Collections.ExampleJourneys()
+  @example_view = new JourneyPlanner.Views.ExampleList()
+  @examplesRegion.show @example_view
 
 JourneyPlanner.App.addInitializer (options)->
   @showResults = =>
-    @walking_examples.hideOverlays()
+    @example_view.collection.hideOverlays()
     @router?.journey?.showOverlays(@map)
   @showExamples = =>
-    @walking_examples.showOverlays(@map)
+    @example_view.collection.showOverlays(@map)
     @router?.journey?.hideOverlays()
 
   $("a[href='#examples']").on "show", @showExamples

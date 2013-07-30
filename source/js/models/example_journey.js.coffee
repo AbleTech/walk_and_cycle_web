@@ -22,9 +22,16 @@ class JourneyPlanner.Models.ExampleJourney extends JourneyPlanner.Models.Journey
 
   exampleMarker: ->
     return @_example_marker if @_example_marker?
-    @_example_marker = new google.maps.Marker
+    @_example_marker = new MarkerWithLabel
       position: @halfwayPoint()
       title: @get("name")
+      labelContent: @collection.indexOf(@) + 1
+      labelClass: "example_marker_label"
+      labelAnchor: new google.maps.Point(13, 32)
+      icon:
+        url: "img/white-icon.png"
+        scaledSize: new google.maps.Size(23, 32)
+        anchor: new google.maps.Point(13,32)
     google.maps.event.addListener @_example_marker, "mouseover", @highlight
     google.maps.event.addListener @_example_marker, "mouseout", @unhighlight
     google.maps.event.addListener @_example_marker, "click", @showExample
@@ -58,11 +65,6 @@ class JourneyPlanner.Collections.ExampleJourneys extends Backbone.Collection
   model: JourneyPlanner.Models.ExampleJourney
   mode: "walking"
 
-  updateMode: (new_mode)->
-    @mode = new_mode
-    @resetOverlays()
-    @trigger "update_mode"
-
   resetOverlays:(map=JourneyPlanner.App.map)->
     @forEach (model)=>
       if model.visible()
@@ -74,9 +76,8 @@ class JourneyPlanner.Collections.ExampleJourneys extends Backbone.Collection
 
   showOverlays: (map)->
     @forEach (model)=>
-      if model.visible()
-        model.polyline().setMap(map)
-        model.exampleMarker().setMap(map)
+      model.polyline().setMap(map)
+      model.exampleMarker().setMap(map)
 
   hideOverlays: ->
     @showOverlays(null)

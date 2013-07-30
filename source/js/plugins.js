@@ -7,6 +7,7 @@
 //= require underscore.string/lib/underscore.string
 //= require vendor/bootstrap
 //= require vendor/jquery.bbq
+//= require vendor/markerwithlabel
 //= require_self
 
 

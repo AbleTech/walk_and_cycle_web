@@ -27,25 +27,32 @@ class JourneyPlanner.Views.ExampleItem extends Marionette.ItemView
     false
 
 
-
 class JourneyPlanner.Views.ExampleList extends Marionette.CompositeView
   itemView: JourneyPlanner.Views.ExampleItem
   itemViewContainer: "ol"
   template: JST["templates/example_list"]
+  mode: "walking"
 
   events:
     "click #example_modes a": "updateMode"
-  collectionEvents:
-    "update_mode":"render"
+
+  initialize: (options)->
+    @collection = new JourneyPlanner.Collections.ExampleJourneys @filteredData()
+    JourneyPlanner.App.all_examples.on "reset", =>
+      @collection.reset @filteredData()
+    super
+
+  filteredData: ->
+    _(JourneyPlanner.App.all_examples.where({mode: @mode})).collect (model)-> model.toJSON()
 
   updateMode: (e)->
-    @collection.updateMode $(e.target).data("mode")
+    @mode = $(e.target).data("mode")
+    $("#example_modes a").removeClass("selected")
+    @collection.hideOverlays()
+    $(e.target).addClass("selected")
+    @collection.reset @filteredData()
+    @collection.showOverlays(JourneyPlanner.App.map)
     false
 
-
-  appendHtml: (collectionView, itemView, index)->
-    collectionView.$("ol").append(itemView.el) if itemView.model.visible()
-
   templateHelpers:->
-    modeSelected: (mode)=> if @collection.mode == mode then "selected" else ""
-
+    modeSelected: (mode)=> if @mode == mode then "selected" else ""
