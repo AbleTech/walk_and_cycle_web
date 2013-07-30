@@ -66,7 +66,7 @@ configure :build do
   activate :minify_javascript
 
   # Enable cache buster
-  activate :asset_hash, ignore: ["components/*", "img/elevation_markers/*", "img/waypoint_markers/*", 'img/poi_markers.png']
+  activate :asset_hash, ignore: ["components/*", "img/elevation_markers/*", "img/waypoint_markers/*", 'img/poi_markers.png', 'img/white-icon.png']
 
   # Use relative URLs
   activate :relative_assets
