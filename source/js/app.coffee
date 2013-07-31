@@ -1,6 +1,5 @@
 define ["jquery", "marionette", "lib/jp_map", "app/routers/default", "app/collections/example_journeys", "app/views/composites/example_list"],
 ($, Marionette, JPMap, DefaultRouter, ExampleJourneys, ExampleList)->
-  'use strict'
 
   window.App = new Marionette.Application()
 
@@ -70,7 +69,3 @@ define ["jquery", "marionette", "lib/jp_map", "app/routers/default", "app/collec
     @router = new DefaultRouter()
     @on "initialize:after", =>
       Backbone.history.start({pushState: true, root: document.location.pathname, hashChange: false}) if Backbone.history
-
-  return App
-
-

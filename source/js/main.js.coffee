@@ -24,6 +24,8 @@ require.config
       deps: ["underscore"]
     "jquery.cookie":
       deps: ["jquery"]
+    "jquery.bbq":
+      deps: ["jquery"]
     "bootstrap":
       deps: ["jquery"]
 
