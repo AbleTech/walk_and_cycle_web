@@ -11,8 +11,9 @@ define ["jquery", "underscore", "marionette", "app/views/items/example_item", "a
 
     initialize: (options)->
       @collection = new ExampleJourneys @filteredData()
-      App.all_examples.on "reset", =>
+      App.all_examples.on "sync", =>
         @collection.reset @filteredData()
+        @collection.showOverlays(App.map)
       super
 
     filteredData: ->

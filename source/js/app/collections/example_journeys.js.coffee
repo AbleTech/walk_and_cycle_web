@@ -1,7 +1,9 @@
-define ["backbone", "app", "app/models/example_journey"], (Backbone, App, ExampleJourney)->
+define ["backbone", "app/models/example_journey", "app"], (Backbone, ExampleJourney)->
   class ExampleJourneys extends Backbone.Collection
     model: ExampleJourney
     mode: "walking"
+
+    url: "/data/examples.json"
 
     resetOverlays:(map=App.map)->
       @forEach (model)=>

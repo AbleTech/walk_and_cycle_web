@@ -10,6 +10,7 @@ require.config
     "jquery.cookie": "../components/jquery.cookie/jquery.cookie"
     "jquery.bbq": "vendor/jquery.bbq"
     "bootstrap": "vendor/bootstrap"
+    "marker_with_label": "vendor/markerwithlabel"
 
   shim:
     "backbone":
@@ -28,6 +29,8 @@ require.config
       deps: ["jquery"]
     "bootstrap":
       deps: ["jquery"]
+    "marker_with_label":
+      exports: "MarkerWithLabel"
 
 define ["jquery", "app"], ($)->
   $(document).ready ->
