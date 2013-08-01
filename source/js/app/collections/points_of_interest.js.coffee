@@ -1,4 +1,4 @@
-define ["backbone", "app", "app/models/point_of_interest"], (Backbone, App, PointOfInterest)->
+define ["backbone", "app/models/point_of_interest"], (Backbone, PointOfInterest)->
   class PointsOfInterest extends Backbone.Collection
     model: PointOfInterest
 

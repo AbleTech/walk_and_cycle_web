@@ -22,15 +22,18 @@ define ["jquery", "marionette", "lib/jp_map", "app/routers/default", "app/collec
 
   App.addInitializer (options)->
     @all_examples = new ExampleJourneys()
-    @example_view = new ExampleList()
-    @examplesRegion.show @example_view
+    @all_examples.fetch
+      success: =>
+        @example_view = new ExampleList()
+        @examplesRegion.show @example_view
+
 
   App.addInitializer (options)->
     @showResults = =>
-      @example_view.collection.hideOverlays()
+      @example_view?.collection.hideOverlays()
       @router?.journey?.showOverlays(@map)
     @showExamples = =>
-      @example_view.collection.showOverlays(@map)
+      @example_view?.collection.showOverlays(@map)
       @router?.journey?.hideOverlays()
 
     $("a[href='#examples']").on "show", @showExamples

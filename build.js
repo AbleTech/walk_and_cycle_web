@@ -9,7 +9,8 @@
       "marionette": "../../source/components/backbone.marionette/lib/backbone.marionette.min",
       "jquery.cookie": "../../source/components/jquery.cookie/jquery.cookie",
       "jquery.bbq": "vendor/jquery.bbq",
-      "bootstrap": "vendor/bootstrap"
+      "bootstrap": "vendor/bootstrap",
+      "marker_with_label": "vendor/markerwithlabel"
     },
     shim: {
       "backbone": {
@@ -31,6 +32,9 @@
       },
       "bootstrap": {
         deps: ["jquery"]
+      },
+      "marker_with_label":{
+        exports: "MarkerWithLabel"
       }
     },
     name: "main",

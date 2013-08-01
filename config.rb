@@ -1,7 +1,5 @@
 activate :directory_indexes
 
-activate :jasmine
-
 activate :livereload
 
 set :css_dir, 'css'
@@ -25,7 +23,6 @@ end
 
 ::Middleman::Extensions.register(:requirejs, RequireJS)
 
-# Build-specific configuration
 configure :build do
   ignore "components/*"
 

@@ -1,8 +1,10 @@
-require ["app", "app/models/journey", "app/collections/waypoints"], (App, Journey, Waypoints)->
+define ["app/models/journey", "app/collections/waypoints", "marker_with_label", "app"], (Journey, Waypoints, MarkerWithLabel)->
   class ExampleJourney extends Journey
     initialize: ->
       @waypoints = new Waypoints()
       @waypoints.reset(@get('waypoints'))
+
+    parse: (response)-> response
 
     visible: ->
       @get("mode") == @collection.mode

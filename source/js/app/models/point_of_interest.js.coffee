@@ -1,4 +1,4 @@
-define ["backbone", "app"], (Backbone, App)->
+define ["backbone"], (Backbone)->
   class PointOfInterest extends Backbone.Model
     sprite_coords:
       airport: [2,2]
