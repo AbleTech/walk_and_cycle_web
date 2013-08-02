@@ -56,6 +56,11 @@ define ["jquery", "marionette", "lib/jp_map", "app/routers/default", "app/collec
       false
 
   App.addInitializer (options)->
+    $("#region_id").change (e)=>
+      @current_region = $("#region_id").val()
+      @example_view?.resetData(true)
+
+  App.addInitializer (options)->
     $("#detail_toggle").click =>
       if $(".right_body").hasClass("expanded")
         $(".right_body").removeClass("expanded")

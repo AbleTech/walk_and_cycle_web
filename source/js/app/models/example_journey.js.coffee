@@ -39,6 +39,13 @@ define ["app/models/journey", "app/collections/waypoints", "marker_with_label", 
       google.maps.event.addListener @_example_marker, "click", @showExample
       @_example_marker
 
+    boundingBox: ->
+      return @_bounds if @_bounds?
+      @_bounds = new google.maps.LatLngBounds()
+      @polyline().getPath().forEach (point)=> @_bounds.extend(point)
+      @_bounds
+
+
     queryString: ->
       query = "?mode=#{@get('mode')}"
       @waypoints.each (waypoint)->

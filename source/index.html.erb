@@ -1,3 +1,11 @@
+<% content_for :header_bar do %>
+  <select id='region_id' class="input-xlarge">
+    <option value="">All Regions</option>
+    <% data.regions.each do |region| %>
+      <option value="<%= region.id %>"><%= region.name %></option>
+    <% end %>
+  </select>
+<% end %>
 <div class="row-fluid">
   <div class="span3 left_sidebar">
     <div class="sidebar_content">

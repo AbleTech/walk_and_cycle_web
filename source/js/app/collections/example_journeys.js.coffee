@@ -5,6 +5,10 @@ define ["backbone", "app/models/example_journey", "app"], (Backbone, ExampleJour
 
     url: "data/examples.json"
 
+    initialize: ->
+      @on "reset", =>
+        @_bounds = null
+
     resetOverlays:(map=App.map)->
       @forEach (model)=>
         if model.visible()
@@ -21,3 +25,9 @@ define ["backbone", "app/models/example_journey", "app"], (Backbone, ExampleJour
 
     hideOverlays: ->
       @showOverlays(null)
+
+    boundingBox: ->
+      return @_bounds if @_bounds?
+      @_bounds = new google.maps.LatLngBounds()
+      @each (model)=> @_bounds = @_bounds.union(model.boundingBox())
+      @_bounds

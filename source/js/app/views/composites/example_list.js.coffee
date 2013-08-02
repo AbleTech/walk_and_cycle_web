@@ -17,16 +17,23 @@ define ["jquery", "underscore", "marionette", "app/views/items/example_item", "a
       super
 
     filteredData: ->
-      _(App.all_examples.where({mode: @mode})).collect (model)-> model.toJSON()
+      conditions = {mode: @mode}
+      conditions["region_id"] = parseInt(App.current_region) if App.current_region
+
+      _(App.all_examples.where(conditions)).collect (model)-> model.toJSON()
 
     updateMode: (e)->
       @mode = $(e.target).data("mode")
       $("#example_modes a").removeClass("selected")
-      @collection.hideOverlays()
       $(e.target).addClass("selected")
+      @resetData(true)
+      false
+
+    resetData: (reset_map=false)=>
+      @collection.hideOverlays()
       @collection.reset @filteredData()
       @collection.showOverlays(App.map)
-      false
+      App.map.fitBounds(@collection.boundingBox()) if reset_map
 
     templateHelpers:->
       modeSelected: (mode)=> if @mode == mode then "selected" else ""
