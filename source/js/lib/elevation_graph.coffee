@@ -1,9 +1,11 @@
 define ->
   class window.ElevationGraph
-    constructor: (element, @journey)->
-      @svg = d3.select(element).append("svg")
-        .attr("width", 600)
-        .attr("height", 120)
+    outer_height: 126
+
+    constructor: (@element, @journey)->
+
+      @svg = d3.select(@element).append("svg")
+        .attr("height", @outer_height)
 
       @margin =
         top: 10
@@ -11,23 +13,21 @@ define ->
         bottom: 40
         left: 25
 
-      @width  = @svg.attr("width") - @margin.left - @margin.right
       @height = @svg.attr("height") - @margin.top - @margin.bottom
 
       @axes = @svg.append("g")
 
       @paper = @svg.append("g").attr("transform", "translate(#{@margin.left},#{@margin.top})")
 
-      @x_scale = d3.scale.linear().range([0, @width])
+      @x_scale = d3.scale.linear()
+      @x_axis  = d3.svg.axis().orient("bottom")
+
       @y_scale = d3.scale.linear().range([@height, 0])
+      @y_axis  = d3.svg.axis().orient("left").ticks(5).scale(@y_scale)
 
-      @x_axis = d3.svg.axis().scale(@x_scale).orient("bottom")
-      @y_axis = d3.svg.axis().scale(@y_scale).orient("left").ticks(5)
-
-      rect = @paper.append("rect")
+      @bg_rect = @paper.append("rect")
         .attr("x", 0)
         .attr("y", 0)
-        .attr("width", @width)
         .attr("height", @height)
         .attr("class", "bg_rect")
         .style("fill","#ffffff")
@@ -61,7 +61,18 @@ define ->
         @hover_line.style("visibility", "hidden")
         @journey.hideElevationMarker()
 
+      $(window).on "resize", @onResize
+      $(window).trigger("resize")
+
+    onResize: =>
+      @outer_width = parseInt(d3.select(@element).style("width"), 10)
+      @svg.attr("width", @outer_width)
+      @width  = @outer_width - @margin.left - @margin.right
+      @bg_rect.attr("width", @width)
+      @x_scale.range([0, @width])
+      @x_axis.scale(@x_scale)
       @updateData(@journey.get("elevation"), @journey.get("total_distance"))
+
 
     updateData: (elevation_data, total_distance)->
       @x_scale.domain([0, total_distance])
@@ -83,7 +94,7 @@ define ->
 
       @axes.append("g")
         .attr("class", "x_axis")
-        .attr("transform", "translate(#{@margin.left},#{@height+@margin.top})")
+        .attr("transform", "translate(#{@margin.left},#{@height+@margin.top+1})")
         .call(@x_axis)
         .append("text")
         .attr("y", 25)
@@ -93,7 +104,7 @@ define ->
         .text("Distance Traveled (m)")
       @axes.append("g")
         .attr("class", "y_axis")
-        .attr("transform", "translate(#{@margin.left},#{@margin.top})")
+        .attr("transform", "translate(#{@margin.left-1},#{@margin.top})")
         .call(@y_axis)
         .append("text")
         .style("dominant-baseline", "hanging")

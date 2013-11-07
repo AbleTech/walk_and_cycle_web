@@ -60,21 +60,6 @@
   input[name='mode']{
     display:none;
   }
-  i{
-    display: inline-block;
-    width: 15px;
-    height: 15px;
-    line-height: 15px;
-    margin-right: 5px;
-    margin-top: 1px;
-    background: image-url('mode-icons.png');
-  }
-  i.walking-icon{
-    background-position: -2px -36px;
-  }
-  i.cycling-icon{
-    background-position: -2px -2px;
-  }
 }
 
 .example_marker_label{

@@ -4,10 +4,13 @@
     stroke: #333;
     shape-rendering: crispEdges;
   }
+  path.domain{
+    display: none;
+  }
   text{
-    font-family: Lato, sans-serif;
     font-weight: bold;
     font-size: 8px;
+    fill: #333;
   }
 }
 .elevation_area {

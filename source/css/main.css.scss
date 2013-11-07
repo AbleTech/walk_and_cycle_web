@@ -1,8 +1,7 @@
 @import "colors";
-@import url(http://fonts.googleapis.com/css?family=Lato:300,700);
 
-$iconSpritePath: "../img/glyphicons-halflings.png";
-$iconWhiteSpritePath: "../img/glyphicons-halflings-white.png";
+// $iconSpritePath: "../img/glyphicons-halflings.png";
+// $iconWhiteSpritePath: "../img/glyphicons-halflings-white.png";
 $gridGutterWidth: 0px;
 
 $linkColor: #004a59;
@@ -22,11 +21,8 @@ $navbarLinkColorActive: #444;
 
 $warningBorder: darken($orange, 5%);
 
-$sansFontFamily: 'Lato', sans-serif;
-
-// $FontAwesomePath: "/components/font-awesome/font";
 @import "sass-bootstrap/lib/bootstrap";
-// @import "font-awesome/scss/font-awesome";
+@import "icomoon";
 @import "header";
 @import "body";
 @import "graph";

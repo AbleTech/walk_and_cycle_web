@@ -1,0 +1,158 @@
+@font-face {
+  font-family: 'icomoon';
+  src: font-files("icomoon.eot");
+  src: font-files("icomoon.eot?#iefix", "icomoon.ttf", "icomoon.woff", "icomoon.svg#icomoon");
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+/* BOOTSTRAP SPECIFIC CLASSES
+ * -------------------------- */
+
+/* Bootstrap 2.0 sprites.less reset */
+[class^="icon-"],
+[class*=" icon-"] {
+  display: inline;
+  width: auto;
+  height: auto;
+  line-height: normal;
+  background-image: none;
+  background-position: 0% 0%;
+  background-repeat: repeat;
+  margin-top: 0;
+}
+
+/* more sprites.less reset */
+.icon-white,
+.nav-pills > .active > a > [class^="icon-"],
+.nav-pills > .active > a > [class*=" icon-"],
+.nav-list > .active > a > [class^="icon-"],
+.nav-list > .active > a > [class*=" icon-"],
+.navbar-inverse .nav > .active > a > [class^="icon-"],
+.navbar-inverse .nav > .active > a > [class*=" icon-"],
+.dropdown-menu > li > a:hover > [class^="icon-"],
+.dropdown-menu > li > a:hover > [class*=" icon-"],
+.dropdown-menu > .active > a > [class^="icon-"],
+.dropdown-menu > .active > a > [class*=" icon-"],
+.dropdown-submenu:hover > a > [class^="icon-"],
+.dropdown-submenu:hover > a > [class*=" icon-"] {
+  background-image: none;
+}
+
+
+/* keeps Bootstrap styles with and without icons the same */
+.btn, .nav {
+  [class^="icon-"],
+  [class*=" icon-"] {
+    //    display: inline;
+    &.icon-large { line-height: .9em; }
+    &.icon-spin { display: inline-block; }
+  }
+}
+.nav-tabs, .nav-pills {
+  [class^="icon-"],
+  [class*=" icon-"] {
+    &, &.icon-large { line-height: .9em; }
+  }
+}
+.btn {
+  [class^="icon-"],
+  [class*=" icon-"] {
+    &.pull-left, &.pull-right {
+      &.icon-2x { margin-top: .18em; }
+    }
+    &.icon-spin.icon-large { line-height: .8em; }
+  }
+}
+.btn.btn-small {
+  [class^="icon-"],
+  [class*=" icon-"] {
+    &.pull-left, &.pull-right {
+      &.icon-2x { margin-top: .25em; }
+    }
+  }
+}
+.btn.btn-large {
+  [class^="icon-"],
+  [class*=" icon-"] {
+    margin-top: 0; // overrides bootstrap default
+    &.pull-left, &.pull-right {
+      &.icon-2x { margin-top: .05em; }
+    }
+    &.pull-left.icon-2x { margin-right: .2em; }
+    &.pull-right.icon-2x { margin-left: .2em; }
+  }
+}
+
+/* Fixes alignment in nav lists */
+.nav-list [class^="icon-"],
+.nav-list [class*=" icon-"] {
+  line-height: inherit;
+}
+
+/* ICOMOON
+ * -------*/
+
+[class*="icon-"] {
+  font-family: 'icomoon';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-walk:before {
+  content: "\e600";
+}
+.icon-cycle:before {
+  content: "\e601";
+}
+.icon-heart:before {
+  content: "\e603";
+}
+.icon-leaf:before {
+  content: "\e602";
+}
+.icon-road:before {
+  content: "\e604";
+}
+.icon-medkit:before {
+  content: "\e605";
+}
+.icon-print:before {
+  content: "\e606";
+}
+.icon-envelope-alt:before {
+  content: "\e607";
+}
+.icon-link:before {
+  content: "\e608";
+}
+.icon-facebook-sign:before {
+  content: "\e609";
+}
+.icon-twitter:before {
+  content: "\e60a";
+}
+.icon-google-plus:before {
+  content: "\e60b";
+}
+.icon-caret-down:before {
+  content: "\e60c";
+}
+.icon-double-angle-up:before {
+  content: "\e60d";
+}
+.icon-double-angle-down:before {
+  content: "\e60e";
+}
+.icon-remove-sign:before {
+  content: "\e60f";
+}
