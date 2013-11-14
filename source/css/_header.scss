@@ -123,32 +123,9 @@
     @include border-radius(5px);
     a {
       color: $orange;
-      &.print {
-        background-image: image-url('fdgsmt.png');
-        background-position: -48px -1344px;
-        background-repeat: no-repeat;
-        padding: 1px 0px 0px 20px;
-      }
-      &.facebook, &.delicious, &.google, &.stumble, &.myspace, &.twitter {
-        height: 12px;
-        width: 12px;
-        display: inline-block;
-        margin: 5px 0px 0px 6px;
-      }
-      &.facebook {
-        @include social-sprite(facebook);
-      }
-      &.delicious {
-        @include social-sprite(delicious);
-      }
-      &.google {
-        @include social-sprite(google);
-      }
-      &.stumble {
-        @include social-sprite(stumble);
-      }
-      &.twitter {
-        @include social-sprite(twitter);
+      &:hover{
+        color: darken($orange, 10);
+        text-decoration: none;
       }
     }
   }

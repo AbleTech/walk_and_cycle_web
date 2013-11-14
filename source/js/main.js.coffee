@@ -12,6 +12,7 @@ require.config
     "bootstrap": "vendor/bootstrap"
     "marker_with_label": "vendor/markerwithlabel"
 
+
   shim:
     "backbone":
       deps: ["underscore","jquery"]

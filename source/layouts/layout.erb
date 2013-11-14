@@ -11,6 +11,7 @@
         <meta name="viewport" content="width=device-width, initial-scale = 1">
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <%= stylesheet_link_tag :main %>
+        <%= stylesheet_link_tag :print, media: :print %>
 
         <!-- build:js scripts/vendor/modernizr.js -->
         <%= javascript_include_tag "vendor/modernizr" %>
@@ -20,7 +21,7 @@
       <div class="header_top">
         <%= partial "layouts/nav_block" %>
         <% link_to "/", title: "Home" do %>
-          <%= image_tag 'header/journeyplanner_logo.jpg', class: "product_logo", alt: "Walking &amp; Cycling Journey Planner" %>
+          <%= image_tag 'header/journeyplanner_logo_print.png', class: "product_logo", alt: "Walking &amp; Cycling Journey Planner" %>
         <% end %>
         <% link_to "http://www.gw.govt.nz", target: "_blank" do %>
           <%= image_tag "header/gwrc_logo.png", class: "council_logo" %>

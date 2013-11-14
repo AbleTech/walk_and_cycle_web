@@ -3,7 +3,7 @@ define ["backbone", "app/models/example_journey", "app"], (Backbone, ExampleJour
     model: ExampleJourney
     mode: "walking"
 
-    url: "data/examples.json"
+    url: "http://staging.journeyplanner.org.nz/api/examples.json?callback=?"
 
     initialize: ->
       @on "reset", =>

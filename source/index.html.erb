@@ -12,9 +12,9 @@
       <li><a href="#"><i class="icon-envelope-alt"></i> Email</a></li>
       <li><a href="#"><i class="icon-link"></i> Link</a></li>
       <li class="muted">|</li>
-      <li><a href="#" title="Share on Facebook"><i class="icon-facebook-sign"></i></a></li>
-      <li><a href='#' title="Share on Twitter"><i class="icon-twitter"></i></a></li>
-      <li><a href="#" title="Share on Google Plus"><i class="icon-google-plus"></i></a>
+      <li><a href="#" id="facebook-share" title="Share on Facebook"><i class="icon-facebook-sign"></i></a></li>
+      <li><a href='#' id="twitter-share" title="Share on Twitter"><i class="icon-twitter"></i></a></li>
+      <li><a href="#" id="googleplus-share" title="Share on Google Plus"><i class="icon-google-plus"></i></a>
     </ul>
   </div>
 <% end %>
@@ -42,7 +42,7 @@
       <p>&copy; 2013 Greater Wellington Regional Council</p>
     </footer>
   </div>
-  <div class="span9 expanded right_body">
+  <div class="span9 initialize right_body">
     <div id='mapdiv' class='googlemap'></div>
     <div class="map-options">
       <ul class="nav nav-pills">
@@ -66,7 +66,7 @@
         </li>
       </ul>
     </div>
-    <div class="details_panel">
+    <div class="details_panel" >
       <div class="navbar">
         <div class="navbar-inner">
           <span class='brand'>Journey Information</span>
@@ -76,6 +76,7 @@
             <li><%= link_to "Health", '#health', data: {toggle: "tab"}  %></li>
             <li><%= link_to "Car Costs", '#car_cost', data: {toggle: "tab"}  %></li>
             <li><%= link_to "Carbon", '#carbon', data: {toggle: "tab"}  %></li>
+            <li><%= link_to "Weather", "#weather", data: {toggle: "tab"} %></li>
           </ul>
           <a href='#' class="pull-right navbar-text" id="detail_toggle"><i class="icon-double-angle-down"></i> hide</a>
         </div>

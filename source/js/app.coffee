@@ -27,12 +27,26 @@ define ["jquery", "marionette", "lib/jp_map", "app/routers/default", "app/collec
         @example_view = new ExampleList()
         @examplesRegion.show @example_view
 
+  App.addInitializer (options)->
+    @toggleDetailsPanel = (open=true, callback=null)=>
+      $(".right_body").toggleClass("expanded", open)
+      if open
+        $("#detail_toggle").html("<i class='icon-double-angle-down'></i> hide")
+      else
+        $("#detail_toggle").html("<i class='icon-double-angle-up'></i> expand")
+      google.maps.event.trigger(@map, 'resize')
+
 
   App.addInitializer (options)->
     @showResults = =>
+      $("#body-content .right_body").removeClass("examples")
+      @toggleDetailsPanel(true)
       @example_view?.collection.hideOverlays()
       @router?.journey?.showOverlays(@map)
+
     @showExamples = =>
+      $("#body-content .right_body").addClass("examples")
+      @toggleDetailsPanel(false)
       @example_view?.collection.showOverlays(@map)
       @router?.journey?.hideOverlays()
 
@@ -62,15 +76,26 @@ define ["jquery", "marionette", "lib/jp_map", "app/routers/default", "app/collec
 
   App.addInitializer (options)->
     $("#detail_toggle").click =>
-      if $(".right_body").hasClass("expanded")
-        $(".right_body").removeClass("expanded")
-        $("#detail_toggle").html("<i class='icon-double-angle-up'></i> expand")
-      else
-        $(".right_body").addClass("expanded")
-        $("#detail_toggle").html("<i class='icon-double-angle-down'></i> hide")
-      setTimeout =>
-        google.maps.event.trigger(@map, 'resize')
-      , 500
+      @toggleDetailsPanel !$(".right_body").hasClass("expanded")
+      false
+
+  App.addInitializer ->
+    $("#facebook-share").click ->
+      window.open "https://www.facebook.com/sharer/sharer.php?u=#{encodeURIComponent(location.href)}",
+        'facebook-share-dialog',
+        'width=626,height=436'
+      false
+
+    $("#twitter-share").click ->
+      window.open "https://twitter.com/share?url=#{encodeURIComponent(location.href)}&via=greaterwgtn",
+        'twitter-share-dialog',
+        'width=626,height=436'
+      false
+
+    $("#googleplus-share").click ->
+      window.open "https://plus.google.com/share?url=#{encodeURIComponent(location.href)}",
+        'gplus-share-dialog',
+        'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,width=600,height=600'
       false
 
   App.addInitializer (options)->

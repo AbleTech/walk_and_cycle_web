@@ -1,5 +1,5 @@
-define ["jquery", "underscore", "backbone", "config", "app/collections/waypoints", "app/collections/steps", "jquery.cookie"],
-($, _, Backbone, Config, Waypoints, Steps)->
+define ["jquery", "underscore", "backbone", "config", "app/collections/waypoints", "app/collections/steps", "app/models/weather_details", "jquery.cookie"],
+($, _, Backbone, Config, Waypoints, Steps, WeatherDetails)->
 
   class Journey extends Backbone.Model
 
@@ -42,6 +42,12 @@ define ["jquery", "underscore", "backbone", "config", "app/collections/waypoints
     parse: (response,options)->
       if response.success and response.total > 0
         response.journeys[0]
+
+    weather_details: ->
+      center = @steps.bounding_box().getCenter()
+      @_weather_details = new WeatherDetails({lat: center.lat(), lng: center.lng()})
+      @_weather_details.fetch()
+      @_weather_details
 
     total_time: ->
       (@get("total_distance")/(@currentSpeed()*1000))*60
