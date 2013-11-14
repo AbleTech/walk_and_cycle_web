@@ -1,10 +1,13 @@
-define ["app/models/journey", "app/collections/waypoints", "marker_with_label", "app"], (Journey, Waypoints, MarkerWithLabel)->
+define [ "underscore", "app/models/journey", "app/collections/waypoints", "marker_with_label", "app"], (_, Journey, Waypoints, MarkerWithLabel)->
   class ExampleJourney extends Journey
     initialize: ->
       @waypoints = new Waypoints()
       @waypoints.reset(@get('waypoints'))
 
-    parse: (response)-> response
+    parse: (response)->
+      attrs = response.properties
+      attrs.path = response.geometry.coordinates
+      attrs
 
     visible: ->
       @get("mode") == @collection.mode
@@ -12,7 +15,7 @@ define ["app/models/journey", "app/collections/waypoints", "marker_with_label", 
     polyline: ->
       return @_polyline if @_polyline?
       @_polyline = new google.maps.Polyline
-        path: google.maps.geometry.encoding.decodePath(@get("encoded_polyline").polyline)
+        path: @polylinePath()
         strokeColor: "#2564a5"
         strokeWeight: 4
         strokeOpacity: 0.7
@@ -39,12 +42,14 @@ define ["app/models/journey", "app/collections/waypoints", "marker_with_label", 
       google.maps.event.addListener @_example_marker, "click", @showExample
       @_example_marker
 
+    polylinePath: ->
+      _(@get("path")).map (pair)-> new google.maps.LatLng(pair[1], pair[0])
+
     boundingBox: ->
       return @_bounds if @_bounds?
       @_bounds = new google.maps.LatLngBounds()
       @polyline().getPath().forEach (point)=> @_bounds.extend(point)
       @_bounds
-
 
     queryString: ->
       query = "?mode=#{@get('mode')}"

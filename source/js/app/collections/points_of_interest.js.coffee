@@ -2,7 +2,7 @@ define ["backbone", "app/models/point_of_interest"], (Backbone, PointOfInterest)
   class PointsOfInterest extends Backbone.Collection
     model: PointOfInterest
 
-    url: -> "http://dev.journeyplanner.org.nz:3000/api/poi.json?callback=?&bounds=#{@bounds}&zoom=#{@zoom}"
+    url: -> "http://staging.journeyplanner.org.nz/api/poi.json?callback=?&bounds=#{@bounds}&zoom=#{@zoom}"
 
     setMap: (map)->
       if map? then @show() else @hide()

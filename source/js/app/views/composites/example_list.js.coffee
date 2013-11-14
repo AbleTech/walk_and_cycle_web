@@ -13,7 +13,7 @@ define ["jquery", "underscore", "marionette", "app/views/items/example_item", "a
       @collection = new ExampleJourneys @filteredData()
       App.all_examples.on "sync", =>
         @collection.reset @filteredData()
-        @collection.showOverlays(App.map)
+        @collection.showOverlays(App.map) if $(@el).is(":visible")
       super
 
     filteredData: ->

@@ -5,6 +5,8 @@ define ["backbone", "app/models/example_journey", "app"], (Backbone, ExampleJour
 
     url: "http://staging.journeyplanner.org.nz/api/examples.json?callback=?"
 
+    parse: (response)-> response.features
+
     initialize: ->
       @on "reset", =>
         @_bounds = null

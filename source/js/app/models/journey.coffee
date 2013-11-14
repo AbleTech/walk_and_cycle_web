@@ -19,8 +19,9 @@ define ["jquery", "underscore", "backbone", "config", "app/collections/waypoints
       @on "change:pace", =>
         $.cookie("jp_speed", @get("pace"), {path: "/", expires: 365})
       @on "sync", =>
-        @updateMap() if @get("encoded_polyline")
         $("a[href='#results']").show().tab("show")
+        @updateMap() if @get("encoded_polyline")
+
 
     validate: (attrs, options)->
       errors = []

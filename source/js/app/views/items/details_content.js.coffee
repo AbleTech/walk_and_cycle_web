@@ -15,8 +15,8 @@ define ["jquery", "underscore", "marionette", "lib/elevation_graph", "app/views/
       $(".details_panel a:first").tab("show")
       if @model.get("elevation")
         @graph = new ElevationGraph($("#elevation_graph", @el)[0], @model)
-      @weather_panel = new Marionette.Region(el: $("#weather", @el))
-      @weather_panel.show new WeatherPanel({model: @model.weather_details()})
+      # @weather_panel = new Marionette.Region(el: $("#weather", @el))
+      # @weather_panel.show new WeatherPanel({model: @model.weather_details()})
 
     calculateCalories: ->
       weight = parseFloat($("#weight", @el).val())
