@@ -18,6 +18,10 @@ gem "ejs", "~> 1.1.1"
 # Guard
 gem 'guard'
 
+# Deployment
+gem "capistrano"
+gem "capistrano-ext"
+
 # Tests
 # gem 'guard-rspec'
 # gem 'rspec'

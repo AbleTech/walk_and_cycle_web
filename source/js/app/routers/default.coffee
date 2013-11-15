@@ -1,5 +1,5 @@
-define ["backbone", "jquery", "app/models/journey", 'app/views/composites/sidebar', 'app/views/composites/journey_form', 'app/views/items/details_content', "jquery.bbq"],
-(Backbone, $, Journey, Sidebar, JourneyForm, DetailsContent)->
+define ["backbone", "jquery", "app/models/journey", 'app/views/composites/sidebar', 'app/views/composites/journey_form', 'app/views/items/details_content', 'app/views/items/error_sidebar', "jquery.bbq"],
+(Backbone, $, Journey, Sidebar, JourneyForm, DetailsContent, ErrorSidebar)->
 
   class DefaultRouter extends Backbone.Router
     routes:
@@ -28,4 +28,7 @@ define ["backbone", "jquery", "app/models/journey", 'app/views/composites/sideba
       if @journey.isValid()
         $("#global_loading_indicator").show()
         @journey.fetch
-          success: ->  $("#global_loading_indicator").hide()
+          success: -> $("#global_loading_indicator").hide()
+          error: =>
+            $("#global_loading_indicator").hide()
+            App.resultsRegion.show new ErrorSidebar({model: @journey})

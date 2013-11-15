@@ -3,6 +3,8 @@
 @import "sass-bootstrap/lib/type";
 @import "sass-bootstrap/lib/utilities";
 @import "colors";
+@import "graph";
+@import "shared";
 
 body{
   font-family: $sansFontFamily;
@@ -21,18 +23,18 @@ body{
 }
 #body-content{
   .row-fluid{
-    display: table;
-    width: 100%;
     .right_body{
       width: 100%;
-      display:table-header-group;
       #mapdiv{
-        height: 500px;
+        height: 400px;
+        // position: absolute;
+        // width: 100%;
+        // top: 150px;
       }
     }
     .left_sidebar{
       width: 100%;
-      display: table-footer-group;
+      clear: both;
     }
   }
 }
@@ -42,6 +44,7 @@ body{
 }
 
 .details_panel{
+  display: none;
   .navbar{
     display: none;
   }
@@ -63,6 +66,9 @@ body{
     display: block;
     #pace-dropdown{
       display: none;
+    }
+    .info_bar{
+      // margin-top: 420px;
     }
   }
 }

@@ -38,7 +38,7 @@ define ["jquery", "underscore", "backbone", "config", "app/collections/waypoints
       query = "mode=#{@get('mode')}"
       @waypoints.each (waypoint)->
         query += "&#{waypoint.queryStr()}"
-      "http://staging.journeyplanner.org.nz/api/route.json?callback=?&#{query}"
+      "http://staging.journeyplanner.org.nz/api/route.json?#{query}"
 
     parse: (response,options)->
       if response.success and response.total > 0
