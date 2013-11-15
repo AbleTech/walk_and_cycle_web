@@ -21,6 +21,9 @@ define ["jquery", "underscore", "marionette", "config", "app/views/items/step_it
 
     templateHelpers: ->
 
+      loading: =>
+        !@model.has("total_distance")
+
       totalDistance: =>
         if distance = @model.get("total_distance")
           if distance > 1000

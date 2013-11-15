@@ -1,0 +1,28 @@
+@mixin keyframe($name) {
+  @-webkit-keyframes $name{
+    @content;
+  }
+  @-moz-keyframes $name{
+    @content;
+  }
+  @-o-keyframes $name{
+    @content;
+  }
+  @keyframes $name{
+    @content;
+  }
+}
+
+@mixin animation($options){
+  -webkit-animation: $options; /* Safari 4+ */
+  -moz-animation:    $options; /* Fx 5+ */
+  -o-animation:      $options; /* Opera 12+ */
+  animation:         $options; /* IE 10+ */
+}
+
+@mixin animation-delay($options){
+  -webkit-animation-delay: $options; /* Safari 4+ */
+  -moz-animation-delay:    $options; /* Fx 5+ */
+  -o-animation-delay:      $options; /* Opera 12+ */
+  animation-delay:         $options; /* IE 10+ */
+}
