@@ -5,6 +5,7 @@ require 'capistrano/ext/multistage'
 set :application, "journeyplanner-frontend"
 set :user, "deploy"
 set :group, "deploy"
+set :use_sudo, false
 
 role :web, "50.23.86.195"
 role :app, "50.23.86.195"
