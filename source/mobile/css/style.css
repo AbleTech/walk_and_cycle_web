@@ -1,0 +1,52 @@
+header {
+  height: 200px;
+  background: white url(../images/phone-no-badge.png) bottom center no-repeat;
+  background-size: 278px 174px; }
+
+#main {
+  border-top: solid 1px #be630e;
+  padding: 15px 35px;
+  color: #fff;
+  text-shadow: #be630e 0 1px 0;
+  background-color: #fa9d33;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#fa9d33), to(#d96701));
+  /* Safari 4+, Chrome */
+  background-image: -webkit-linear-gradient(top, #fa9d33, #d96701);
+  /* Chrome 10+, Safari 5.1+, iOS 5+ */
+  background-image: -moz-linear-gradient(top, #fa9d33, #d96701);
+  /* Firefox 3.6-15 */
+  background-image: -o-linear-gradient(top, #fa9d33, #d96701);
+  /* Opera 11.10-12.00 */
+  background-image: linear-gradient(to bottom, #fa9d33, #d96701);
+  /* Firefox 16+, IE10, Opera 12.50+ */ }
+  #main h1, #main h2 {
+    text-align: center;
+    margin: 0;
+    padding: 0; }
+  #main h1 {
+    font-size: 24px; }
+  #main h2 {
+    font-size: 22px; }
+  #main ul {
+    list-style: none;
+    padding: 0; }
+    #main ul li {
+      background: url(../images/tick.png) left 3px no-repeat;
+      background-size: 12px 12px;
+      padding-left: 25px;
+      font-size: 12px;
+      margin-bottom: 10px; }
+
+footer {
+  padding: 15px 0 18px 0;
+  border-top: solid 1px #02434d;
+  border-bottom: solid 1px #02434d;
+  background-color: #0a6675;
+  text-align: center; }
+  footer a {
+    display: inline-block; }
+    footer a:first-child {
+      margin-right: 15px; }
+    footer a img {
+      width: 120px;
+      height: 40px; }

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Journey Planner Widget - Readme</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/gwrc.css" />
+    <style>
+      pre { background-color: #E9E9E9; border: solid 1px #D9D9D9; padding: 5px 10px; font-family: Monaco, Courier, monospace; }
+      ol { padding-left: 1.5em; }
+      ol li span { font-size: 120%; }
+      .content { margin: 2em 2em; }
+    </style>
+  </head>
+
+  <body>
+
+<div class="content">
+    <h1>Journey Planner Widget - Readme</h1>
+    
+    <a href="widget.zip" title="Download Journey Planner Widget">Download the Journey Planner Widget</a>
+    
+    <h2>To use the Journey Planner Widget in your application:</h2>
+
+    <ol>
+      <li>
+        <span>Copy javascripts/jp_widget.js into your application and source it in your html:</span><br />
+        <code><pre>&lt;script src="javascripts/jp_widget.js" type="text/javascript"&gt;&lt;/script&gt;</pre></code>
+      </li>
+      <li>
+        <span>Download the jquery lib and source it in your html:</span><br />
+        <code><pre>&lt;script src="javascripts/jquery-min.js" type="text/javascript"&gt;&lt;/script&gt;</pre></code>
+      </li>
+      <li>
+        <span>Get a free licence key <a href="http://addressfinder.co.nz/signup">here</a> for your website (i.e. yoursite.co.nz) and source the addressfinder libraries in your html (replace LICENSE_KEY with your key):</span><br />
+        <code><pre>&lt;script src="http://api.addressfinder.co.nz/af?key=LICENSE_KEY&amp;v=1" type="text/javascript"&gt;&lt;/script&gt;</pre></code>
+      </li>
+      <li>
+        <span>Create an empty div with an id of 'jp_widget' where you want the widget to be placed:</span><br />
+        <code><pre>&lt;div id="jp_widget"&gt;&lt;/div&gt;</pre></code>
+      </li>
+      <li>
+        <span>Create the Journey Planner Widget on the jp_widget div:</span><br />
+        <code>
+<pre>$(document).ready(function() {
+  $('#jp_widget').journeyPlannerWidget();
+});</pre>
+        </code>
+      </li>
+      <li>
+        <span>If you want to set a default destination, pass the following parameters to journeyPlannerWidget:</span><br />
+<code><pre>
+a1: the address
+x1: x co-ordinate
+y1: y co-ordinate
+</pre></code>
+The exact parameters can be found using AddressFinder through the widget or the Journey Planner website. e.g:
+<pre>$('#jp_widget').journeyPlannerWidget({a1: '40 Bowen Street, Pipitea, Wellington 6011', x1: '174.776742217208', y1: '-41.2787635177392'});</pre>
+      </li>
+    </ol>
+    
+</div>
+
+  </body>
+</html>
