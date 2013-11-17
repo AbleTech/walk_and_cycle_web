@@ -1,0 +1,89 @@
+@import "sass-bootstrap/lib/mixins";
+@import "sass-bootstrap/lib/variables";
+@import "sass-bootstrap/lib/type";
+@import "sass-bootstrap/lib/utilities";
+@import "colors";
+@import "graph";
+@import "shared";
+
+body{
+  font-family: $sansFontFamily;
+}
+.header_top{
+  height: 100px;
+  img.council_logo{
+    float: right;
+  }
+  .header_block{
+    display: none;
+  }
+}
+.header_bottom{
+  display: none;
+}
+#body-content{
+  .row-fluid{
+    .right_body{
+      width: 100%;
+      #mapdiv{
+        height: 400px;
+        // position: absolute;
+        // width: 100%;
+        // top: 150px;
+      }
+    }
+    .left_sidebar{
+      width: 100%;
+      clear: both;
+    }
+  }
+}
+
+.map-options{
+  display: none;
+}
+
+.details_panel{
+  display: none;
+  .navbar{
+    display: none;
+  }
+  .tab-pane p{
+    display: none;
+  }
+}
+.sidebar_content{
+  #journey_form{
+    display: none;
+  }
+  .nav.nav-tabs{
+    display: none;
+  }
+  #examples{
+    display: none;
+  }
+  #results{
+    display: block;
+    #pace-dropdown{
+      display: none;
+    }
+    .info_bar{
+      // margin-top: 420px;
+    }
+  }
+}
+
+footer{
+  margin-top: 20px;
+  border-top: solid 1px $grayLighter;
+  padding-top: 20px;
+  p{
+    display:none;
+    &:last-child{
+      text-align: center;
+      display: block;
+    }
+  }
+}
+
+

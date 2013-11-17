@@ -1,0 +1,132 @@
+.header_top {
+  background: $header_bg;
+  height: 100px;
+  .header_block {
+    position: absolute;
+    right: 0px;
+    background-color: #f99d31;
+    margin-right: 6px;
+    z-index: 2;
+    .left, .middle, .right {
+      float: left;
+      height: 29px;
+    }
+    .left {
+      background-image: image-url('header/header_block_sides.png');
+      background-position: 0 0;
+      background-repeat: no-repeat;
+      background-color: #f99d31;
+      width: 10px;
+    }
+    .middle {
+      background: #f99d31 image-url('header/header_block_middle.png');
+
+      ul {
+        @extend .unstyled;
+        margin: 0;
+        padding: 0;
+        li {
+          float: left;
+          color: #fff;
+          padding: 0px 10px 0px 10px;
+          border-left: #fa780f 1px solid;
+          border-right: #fbc483 1px solid;
+          height: 24px;
+          line-height: 24px;
+          a {
+            color: #fff;
+            &.selected {
+              font-weight: bold;
+            }
+          }
+        }
+      }
+    }
+    .right {
+      background-image: image-url('header/header_block_sides.png');
+      background-position: -10px 0;
+      background-repeat: no-repeat;
+      background-color: #f99d31;
+      width: 12px;
+    }
+  }
+
+  .council_logo{
+    position: absolute;
+    top: 24px;
+    right: 0px;
+    margin: 0px 10px 0px 0px;
+  }
+
+  .product_logo{
+    position:absolute;
+    top:41px;
+    margin: 12px 0px 0px 10px;
+  }
+}
+
+@import "social/*.png";
+
+.header_bottom {
+  position: relative;
+  background-color: #f99d31;
+  background-image: image-url('fdgsmt.png');
+  background-position: -48px -696px;
+  background-repeat: repeat;
+  height: 44px;
+  padding: 6px 10px 0px 10px;
+
+  #global_loading_indicator{
+    display: none;
+    z-index: 1000;
+    position: absolute;
+    width: 80px;
+    height: 25px;
+    left: 50%;
+    margin-left: -50px;
+    bottom: -25px;
+    background: #fff;
+    line-height: 25px;
+    padding: 0 10px;
+    text-align: center;
+    color: $teal;
+    @include border-radius(0 0 5px 5px);
+  }
+
+  form {
+    margin: 0;
+    height: 36px;
+    select {
+      background-image: image-url('fdgsmt.png');
+      background-position: -48px -1092px;
+      background-repeat: no-repeat;
+      border: none;
+      width: 342px;
+      height: 36px;
+      padding: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #444444;
+      float: left;
+    }
+  }
+  .print_share_box {
+    @extend .pull-right;
+    padding: 0 8px;
+    margin-top: 7px;
+    border: solid 1px #f99d31;
+    background: #fcf9e0;
+    height: 22px;
+    line-height: 22px;
+    color: #666;
+    font-size: 11px;
+    @include border-radius(5px);
+    a {
+      color: $orange;
+      &:hover{
+        color: darken($orange, 10);
+        text-decoration: none;
+      }
+    }
+  }
+}

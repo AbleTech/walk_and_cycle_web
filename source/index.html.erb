@@ -1,0 +1,90 @@
+<% content_for :header_bar do %>
+  <select id='region_id' class="input-xlarge">
+    <option value="">All Regions</option>
+    <% data.regions.each do |region| %>
+      <option value="<%= region.id %>"><%= region.name %></option>
+    <% end %>
+  </select>
+  <div class='print_share_box'>
+    <ul class="inline">
+      <li><a href="#"><i class="icon-print"></i> Print</a></li>
+      <li class="muted">|</li>
+      <li><a href="#"><i class="icon-envelope-alt"></i> Email</a></li>
+      <li><a href="#"><i class="icon-link"></i> Link</a></li>
+      <li class="muted">|</li>
+      <li><a href="#" id="facebook-share" title="Share on Facebook"><i class="icon-facebook-sign"></i></a></li>
+      <li><a href='#' id="twitter-share" title="Share on Twitter"><i class="icon-twitter"></i></a></li>
+      <li><a href="#" id="googleplus-share" title="Share on Google Plus"><i class="icon-google-plus"></i></a>
+    </ul>
+  </div>
+<% end %>
+<div class="row-fluid">
+  <div class="span3 left_sidebar">
+    <div class="sidebar_content">
+      <form action='#' id="journey_form" class='green_box'>
+        <h4>Directions:</h4>
+        <fieldset></fieldset>
+      </form>
+      <div class='tabbable'>
+        <ul class='nav nav-tabs'>
+          <li class='active'><%= link_to "Examples", "#examples", data: {toggle: "tab"} %></li>
+          <li><%= link_to "Results", "#results", data: {toggle: "tab"} %></li>
+        </ul>
+        <div class="tab-content">
+          <div class='tab-pane active' id='examples'></div>
+          <div class='tab-pane' id="results"></div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <p>How can we make Journey Planner better for you?</p>
+      <p><%= mail_to "support@journeyplanner.org.nz", "Please send us your feedback" %></p>
+      <p>&copy; 2013 Greater Wellington Regional Council</p>
+    </footer>
+  </div>
+  <div class="span9 initialize right_body">
+    <div id='mapdiv' class='googlemap'></div>
+    <div class="map-options">
+      <ul class="nav nav-pills">
+        <li class="dropdown">
+          <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">Extra Layers <i class="icon-caret-down"></i></a>
+          <ul id="overlay-options" class='dropdown-menu' role="menu" >
+            <li><a href='#' data-overlay="none">None</a></li>
+            <li><a href='#' data-overlay="poi">Points of Interest</a></li>
+            <li><a href='#' data-overlay="paths">Paths</a></li>
+            <li><a href='#' data-overlay='traffic'>Traffic</a></li>
+            <!-- <li><a href="#" data-overlay='weather'>Weather</a></li> -->
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">Map Type <i class="icon-caret-down"></i></a>
+          <ul id="maptype-options" class='dropdown-menu pull-right' role="menu" >
+            <li><a href='#' data-maptype="map">Map</a></li>
+            <li><a href='#' data-maptype="terrain">Terrain</a></li>
+            <li><a href='#' data-maptype='aerial'>Aerial</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="details_panel" >
+      <div class="navbar">
+        <div class="navbar-inner">
+          <span class='brand'>Journey Information</span>
+          <ul class='nav'>
+            <li class='active'><%= link_to "Elevation", '#elevation', data: {toggle: "tab"} %></li>
+            <li><%= link_to "Calories", '#calories', data: {toggle: "tab"}  %></li>
+            <li><%= link_to "Health", '#health', data: {toggle: "tab"}  %></li>
+            <li><%= link_to "Car Costs", '#car_cost', data: {toggle: "tab"}  %></li>
+            <li><%= link_to "Carbon", '#carbon', data: {toggle: "tab"}  %></li>
+            <!-- <li><%= link_to "Weather", "#weather", data: {toggle: "tab"} %></li> -->
+          </ul>
+          <a href='#' class="pull-right navbar-text" id="detail_toggle"><i class="icon-double-angle-down"></i> hide</a>
+        </div>
+      </div>
+      <div id='detail_content' ></div>
+    </div>
+  </div>
+</div>
+<% content_for :javascript do %>
+  <%= javascript_include_tag "vendor/require", data:{main: asset_path(:js, :main)} %>
+<% end %>
