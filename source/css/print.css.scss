@@ -9,6 +9,23 @@
 body{
   font-family: $sansFontFamily;
 }
+
+a[alt="Home"]:after{
+  content: "www.journeyplanner.org.nz"
+}
+
+#mapdiv{
+  height: 350px;
+}
+
+#results .info_bar{
+  page-break-after: always;
+}
+
+.print-options{
+  display: none;
+}
+
 .header_top{
   height: 100px;
   img.council_logo{
@@ -27,9 +44,9 @@ body{
       width: 100%;
       #mapdiv{
         height: 400px;
-        // position: absolute;
-        // width: 100%;
-        // top: 150px;
+        position: absolute;
+        width: 100%;
+        top: 150px;
       }
     }
     .left_sidebar{
@@ -52,7 +69,6 @@ body{
     display: none;
   }
 }
-.sidebar_content{
   #journey_form{
     display: none;
   }
@@ -67,10 +83,10 @@ body{
     #pace-dropdown{
       display: none;
     }
-    .info_bar{
-      // margin-top: 420px;
-    }
   }
+
+#link-modal{
+  display: none;
 }
 
 footer{

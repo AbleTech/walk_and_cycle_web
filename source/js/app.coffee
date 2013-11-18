@@ -12,6 +12,7 @@ define ["jquery", "marionette", "lib/jp_map", "app/routers/default", "app/collec
   App.addInitializer (options)->
     $(window).resize ->
       panel_height = $(window).height() - 150
+      console.log window.matchMedia("print").matches
       $(".left_sidebar").height(panel_height)
       $(".right_body").css("height", panel_height)
     $(window).trigger("resize")
@@ -80,6 +81,9 @@ define ["jquery", "marionette", "lib/jp_map", "app/routers/default", "app/collec
       false
 
   App.addInitializer ->
+    $("#print-share").click ->
+      window.location = "/print#{location.search}"
+      false
     $("#facebook-share").click ->
       window.open "https://www.facebook.com/sharer/sharer.php?u=#{encodeURIComponent(location.href)}",
         'facebook-share-dialog',

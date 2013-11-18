@@ -29,11 +29,12 @@ define ["underscore", "backbone", "jquery", "app/models/journey", 'app/views/com
       @renderJourney()
 
     renderJourney: ->
-      $("title").text "#{@journey.waypoints.first().streetName()} to #{@journey.waypoints.last().streetName()} | Cycling and Walking Journey Planner"
       App.resultsRegion.show new Sidebar({model: @journey, collection: @journey.steps})
       App.journeyFields.show new JourneyForm({model: @journey, collection: @journey.waypoints})
       App.detailContent.show new DetailsContent({model: @journey})
+      $("#link-modal textarea").val(location.href)
       if @journey.isValid()
+        $("title").text "#{@journey.waypoints.first().streetName()} to #{@journey.waypoints.last().streetName()} | Cycling and Walking Journey Planner"
         $("#global_loading_indicator").show()
         @journey.fetch
           success: -> $("#global_loading_indicator").hide()

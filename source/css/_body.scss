@@ -5,6 +5,15 @@
 @import "compass/css3/transition";
 
 
+#mapdiv{
+  height: 350px;
+}
+
+ul.print-options{
+  position: absolute;
+  top: 160px;
+  left: 10px;
+}
 
 .big-icon{
   font-size:36px;
@@ -212,7 +221,12 @@
 
 }
 
-
+#link-modal{
+  textarea{
+    cursor: text;
+    font-size: 1em;
+  }
+}
 
 
 
