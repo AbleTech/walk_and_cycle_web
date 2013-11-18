@@ -10,7 +10,7 @@
       <li><a href="#"><i class="icon-print"></i> Print</a></li>
       <li class="muted">|</li>
       <li><a href="#"><i class="icon-envelope-alt"></i> Email</a></li>
-      <li><a href="#"><i class="icon-link"></i> Link</a></li>
+      <li><a href="#" id='link-share' data-toggle="modal" data-target="#link-modal"><i class="icon-link"></i> Link</a></li>
       <li class="muted">|</li>
       <li><a href="#" id="facebook-share" title="Share on Facebook"><i class="icon-facebook-sign"></i></a></li>
       <li><a href='#' id="twitter-share" title="Share on Twitter"><i class="icon-twitter"></i></a></li>
@@ -85,6 +85,20 @@
     </div>
   </div>
 </div>
+<div class="modal fade" id="link-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <p>To share a link to this current journey, copy this address:</p>
+        <textarea class="input-block-level" disabled rows='6'></textarea>
+      </div>
+<!--       <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Done</button>
+      </div> -->
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 <% content_for :javascript do %>
   <%= javascript_include_tag "vendor/require", data:{main: asset_path(:js, :main)} %>
 <% end %>
