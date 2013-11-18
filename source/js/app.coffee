@@ -82,7 +82,7 @@ define ["jquery", "marionette", "lib/jp_map", "app/routers/default", "app/collec
 
   App.addInitializer ->
     $("#print-share").click ->
-      window.location = "/print#{location.search}"
+      window.location = "/print_journey#{location.search}"
       false
     $("#facebook-share").click ->
       window.open "https://www.facebook.com/sharer/sharer.php?u=#{encodeURIComponent(location.href)}",

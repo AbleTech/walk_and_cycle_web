@@ -13,3 +13,4 @@ role :app, "50.23.86.195"
 set :scm, :git
 set :repository, "git@github.com:AbleTech/walk_and_cycle_web.git"
 set :deploy_via, :remote_cache
+set :branch, "master"
