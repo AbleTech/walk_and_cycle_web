@@ -22,6 +22,8 @@ define ["jquery", "underscore", "backbone", "config", "app/collections/waypoints
         $("a[href='#results']").show().tab("show")
         @updateMap() if @get("encoded_polyline")
 
+      @on "live_drag", @liveDrag
+
 
     validate: (attrs, options)->
       errors = []
@@ -112,6 +114,7 @@ define ["jquery", "underscore", "backbone", "config", "app/collections/waypoints
         waypoint.getMarker().setMap(map)
 
     hideOverlays: ->
+      @shadow_live?.setMap(null)
       @showOverlays(null)
 
     polyline: ->
@@ -133,5 +136,21 @@ define ["jquery", "underscore", "backbone", "config", "app/collections/waypoints
         App.map.fitBounds(@steps.bounding_box())
         @showOverlays(App.map)
 
+    liveDrag: =>
+      live_waypoints = @waypoints.map (waypoint)->
+        {
+          x: waypoint.getMarker().getPosition().lng()
+          y: waypoint.getMarker().getPosition().lat()
+        }
+      $.getJSON "http://dev.journeyplanner.org.nz:3000/api/route/shadow.json", {waypoints: live_waypoints, mode: @get("mode")}, (result)=>
+        @shadow_live?.setMap(null)
+        if result.encoded_polyline?
+          console.log(result)
+          @shadow_live = new google.maps.Polyline
+            map: App.map
+            path:  google.maps.geometry.encoding.decodePath(result.encoded_polyline.polyline)
+            strokeColor: "#2564a5"
+            strokeWeight: 4
+            strokeOpacity: 0.4
 
 
