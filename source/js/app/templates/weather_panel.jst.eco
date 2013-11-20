@@ -1,8 +1,0 @@
-<h4>Weather for <%= @city.name %></h4>
-
-<ul class="list-inline">
-  <% for day in @list: %>
-    <%= day.weather[0].main %>
-  <% end %>
-</ul>
-
