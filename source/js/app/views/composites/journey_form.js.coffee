@@ -9,6 +9,8 @@ define ["marionette", "app/views/items/waypoint_fields"], (Marionette, WaypointF
 
     collectionEvents:
       "remove" : "render"
+      "add" : ->
+        @children.each (child)-> child.render()
 
     templateHelpers:->
       modeActive: (mode)=> if @model.get("mode") == mode then "active" else ""
