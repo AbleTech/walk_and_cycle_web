@@ -12,7 +12,6 @@ define ["jquery", "marionette", "lib/jp_map", "app/routers/default", "app/collec
   App.addInitializer (options)->
     $(window).resize ->
       panel_height = $(window).height() - 150
-      console.log window.matchMedia("print").matches
       $(".left_sidebar").height(panel_height)
       $(".right_body").css("height", panel_height)
     $(window).trigger("resize")
