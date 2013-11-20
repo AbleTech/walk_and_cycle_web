@@ -14,7 +14,7 @@ define ["jquery", "underscore", "marionette", "lib/elevation_graph", "app/views/
     onRender: ->
       $(".details_panel a:first").tab("show")
       if @model.get("elevation")
-        @graph = new ElevationGraph($("#elevation_graph", @el)[0], @model)
+        @graph = new ElevationGraph($("#elevation_graph", @el)[0], @model) if Modernizr.svg
       # @weather_panel = new Marionette.Region(el: $("#weather", @el))
       # @weather_panel.show new WeatherPanel({model: @model.weather_details()})
 
