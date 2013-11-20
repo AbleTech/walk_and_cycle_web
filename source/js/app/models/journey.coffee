@@ -191,7 +191,6 @@ define ["jquery", "underscore", "backbone", "config", "app/collections/waypoints
       google.maps.event.addListener @_drag_marker, "mousedown", (e)=> @_drag_marker.set("live_drag", true)
       google.maps.event.addListener @_drag_marker, "mouseup", (e)=> @_drag_marker.set("live_drag", false)
       google.maps.event.addListener @_drag_marker, "dragstart", (e)=>
-        console.log(@preceedingWaypoint(e.latLng))
         index = @waypoints.indexOf(@preceedingWaypoint(e.latLng))
         @waypoints.add @dragWaypoint(), at: index + 1
 
@@ -219,7 +218,6 @@ define ["jquery", "underscore", "backbone", "config", "app/collections/waypoints
       $.getJSON "http://staging.journeyplanner.org.nz/api/route/shadow.json", {waypoints: live_waypoints, mode: @get("mode")}, (result)=>
         @shadow_live?.setMap(null)
         if result.encoded_polyline?
-          console.log(result)
           @shadow_live = new google.maps.Polyline
             map: App.map
             path:  google.maps.geometry.encoding.decodePath(result.encoded_polyline.polyline)
