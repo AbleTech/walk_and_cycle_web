@@ -40,7 +40,7 @@ define ["jquery", "underscore", "backbone", "config", "app/collections/waypoints
       query = "mode=#{@get('mode')}"
       @waypoints.each (waypoint)->
         query += "&#{waypoint.queryStr()}"
-      "http://staging.journeyplanner.org.nz/api/route.json?#{query}"
+      "http://www.journeyplanner.org.nz/api/route.json?#{query}"
 
     parse: (response,options)->
       if response.success and response.total > 0
@@ -215,7 +215,7 @@ define ["jquery", "underscore", "backbone", "config", "app/collections/waypoints
           x: waypoint.getMarker().getPosition().lng()
           y: waypoint.getMarker().getPosition().lat()
         }
-      $.getJSON "http://staging.journeyplanner.org.nz/api/route/shadow.json", {waypoints: live_waypoints, mode: @get("mode")}, (result)=>
+      $.getJSON "http://www.journeyplanner.org.nz/api/route/shadow.json", {waypoints: live_waypoints, mode: @get("mode")}, (result)=>
         @shadow_live?.setMap(null)
         if result.encoded_polyline?
           @shadow_live = new google.maps.Polyline
