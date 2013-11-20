@@ -1,0 +1,199 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Cycling &amp; Walking Journey Planner</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale = 1">
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <link href="css/main.css" media="screen" rel="stylesheet" type="text/css" />
+        <link href="css/print.css" media="print" rel="stylesheet" type="text/css" />
+
+        <!-- build:js scripts/vendor/modernizr.js -->
+        <script src="js/vendor/modernizr.js" type="text/javascript"></script>
+        <!-- endbuild -->
+    </head>
+    <body>
+      <div class="header_top">
+        <div class="header_block">
+    <div class="left">
+        <!-- / -->
+    </div>
+    <div class="middle">
+        <ul>
+            <li style="border-left: none; padding-left: 4px;">
+                <a href="/" class="selected">Home</a>
+            </li>
+            <li>
+                <a href="/routing/help" class="selected" onclick="try{return window.goHelp()}catch(a){return true}">Intro</a>
+            </li>
+            <li>
+                <a href="/routing/moremaps" class="selected">More Maps</a>
+            </li>
+            <li>
+                <a href="/routing/terms" class="selected">Terms</a>
+            </li>
+            <li style="border-right: none; padding-right: 4px;">
+                <a href="mailto:support@journeyplanner.org.nz" class="selected" >Contact &amp; Feedback</a>
+            </li>
+
+        </ul>
+        <div class="clear"><!-- / --></div>
+    </div>
+    <div class="right">
+        <!-- / -->
+    </div>
+</div>
+
+        <a title="Home" href="/">
+          <img class="product_logo" alt="Walking &amp; Cycling Journey Planner" src="img/header/journeyplanner_logo_print.png" />
+        </a>
+        <a target="_blank" href="http://www.gw.govt.nz">
+          <img class="council_logo" src="img/header/gwrc_logo.png" />
+        </a>
+      </div>
+      <div class="header_bottom">
+           <select id='region_id' class="input-xlarge">
+    <option value="">All Regions</option>
+    
+      <option value="23">Wellington City</option>
+    
+      <option value="24">Hutt City</option>
+    
+      <option value="25">Porirua</option>
+    
+      <option value="26">Kapiti</option>
+    
+      <option value="27">Wairarapa</option>
+    
+  </select>
+  <div class='print_share_box'>
+    <ul class="inline">
+      <li><a href="#" id='print-share'><i class="icon-print"></i> Print</a></li>
+      <li class="muted">|</li>
+      <!-- <li><a href="#"><i class="icon-envelope-alt"></i> Email</a></li> -->
+      <li><a href="#" id='link-share' data-toggle="modal" data-target="#link-modal"><i class="icon-link"></i> Link</a></li>
+      <li class="muted">|</li>
+      <li><a href="#" id="facebook-share" title="Share on Facebook"><i class="icon-facebook-sign"></i></a></li>
+      <li><a href='#' id="twitter-share" title="Share on Twitter"><i class="icon-twitter"></i></a></li>
+      <li><a href="#" id="googleplus-share" title="Share on Google Plus"><i class="icon-google-plus"></i></a>
+    </ul>
+  </div>
+
+
+         <div class="clear">
+            <!-- / -->
+        </div>
+        <div id="global_loading_indicator">
+          <i class="icon-spinner icon-spin icon-large"></i> <strong>Loading</strong>
+        </div>
+
+      </div>
+      <div class='clear'></div>
+      <div class="container-fluid" id='body-content'>
+        <div class="row-fluid">
+  <div class="span3 left_sidebar">
+    <div class="sidebar_content">
+      <form action='#' id="journey_form" class='green_box'>
+        <h4>Directions:</h4>
+        <fieldset></fieldset>
+      </form>
+      <div class='tabbable'>
+        <ul class='nav nav-tabs'>
+          <li class='active'><a data-toggle="tab" href="#examples">Examples</a></li>
+          <li><a data-toggle="tab" href="#results">Results</a></li>
+        </ul>
+        <div class="tab-content">
+          <div class='tab-pane active' id='examples'></div>
+          <div class='tab-pane' id="results"></div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <p>How can we make Journey Planner better for you?</p>
+      <p><a href="mailto:support@journeyplanner.org.nz">Please send us your feedback</a></p>
+      <p>&copy; 2013 Greater Wellington Regional Council</p>
+    </footer>
+  </div>
+  <div class="span9 initialize right_body">
+    <div id='mapdiv' class='googlemap'></div>
+    <div class="map-options">
+      <ul class="nav nav-pills">
+        <li class="dropdown">
+          <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">Extra Layers <i class="icon-caret-down"></i></a>
+          <ul id="overlay-options" class='dropdown-menu' role="menu" >
+            <li><a href='#' data-overlay="none">None</a></li>
+            <li><a href='#' data-overlay="poi">Points of Interest</a></li>
+            <li><a href='#' data-overlay="paths">Paths</a></li>
+            <li><a href='#' data-overlay='traffic'>Traffic</a></li>
+            <!-- <li><a href="#" data-overlay='weather'>Weather</a></li> -->
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">Map Type <i class="icon-caret-down"></i></a>
+          <ul id="maptype-options" class='dropdown-menu pull-right' role="menu" >
+            <li><a href='#' data-maptype="map">Map</a></li>
+            <li><a href='#' data-maptype="terrain">Terrain</a></li>
+            <li><a href='#' data-maptype='aerial'>Aerial</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="details_panel" >
+      <div class="navbar">
+        <div class="navbar-inner">
+          <span class='brand'>Journey Information</span>
+          <ul class='nav'>
+            <li class='active'><a data-toggle="tab" href="#elevation">Elevation</a></li>
+            <li><a data-toggle="tab" href="#calories">Calories</a></li>
+            <li><a data-toggle="tab" href="#health">Health</a></li>
+            <li><a data-toggle="tab" href="#car_cost">Car Costs</a></li>
+            <li><a data-toggle="tab" href="#carbon">Carbon</a></li>
+            <!-- <li><a data-toggle="tab" href="#weather">Weather</a></li> -->
+          </ul>
+          <a href='#' class="pull-right navbar-text" id="detail_toggle"><i class="icon-double-angle-down"></i> hide</a>
+        </div>
+      </div>
+      <div id='detail_content' ></div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="link-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <p>To share a link to this current journey, copy this address:</p>
+        <textarea class="input-block-level" disabled rows='6'></textarea>
+      </div>
+    </div>
+  </div>
+</div>
+
+      </div>
+
+        <script type='text/javascript' src='http://www.addressfinder.co.nz/assets/v2/widget.js'></script>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=geometry,weather&sensor=false"></script>
+        <!--<script src="js/plugins.js"></script>-->
+        <!--[if lte IE 8]>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/r2d3/0.2.0/r2d3.min.js" type='text/javascript' charset="utf-8"></script>
+        <![endif]-->
+        <!--[if gte IE 9]><!-->
+        <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.2.2/d3.v3.min.js" type='text/javascript'></script>
+        <!--<![endif]-->
+          <script src="js/vendor/require.js" data-main="js/main.js" type="text/javascript"></script>
+
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+            s.parentNode.insertBefore(g,s)}(document,'script'));
+        </script>
+    </body>
+</html>

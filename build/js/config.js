@@ -1,0 +1,1 @@
+!function(){define({SPEEDS:{walking:{slow:3,average:5,fast:6.5},cycling:{slow:10,average:20,fast:30}},CAR_COST:{walking:.7,cycling:.65},HEALTH_COST:{walking:3.53,cycling:1.77},EFFORT:{walking:{slow:.0471,average:.0761,fast:.0971},cycling:{slow:.069,average:.15,fast:.2401}}})}.call(this);
