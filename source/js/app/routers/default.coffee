@@ -34,11 +34,12 @@ define ["underscore", "backbone", "jquery", "app/models/journey", 'app/views/com
       App.detailContent.show new DetailsContent({model: @journey})
       $("#link-modal textarea").val(location.href)
       if @journey.isValid()
-        $("title").text "#{@journey.waypoints.first().streetName()} to #{@journey.waypoints.last().streetName()} | Cycling and Walking Journey Planner"
+        # $("title").text "#{@journey.waypoints.first().streetName()} to #{@journey.waypoints.last().streetName()} | Cycling and Walking Journey Planner"
         $("#global_loading_indicator").show()
         @journey.fetch
           success: -> $("#global_loading_indicator").hide()
-          error: =>
+          error: (e)=>
+            console.log(e)
             $("#global_loading_indicator").hide()
             App.resultsRegion.show new ErrorSidebar({model: @journey})
 
