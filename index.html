@@ -130,7 +130,8 @@
             <li><a href='#' data-overlay="poi">Points of Interest</a></li>
             <li><a href='#' data-overlay="paths">Paths</a></li>
             <li><a href='#' data-overlay='traffic'>Traffic</a></li>
-            <!-- <li><a href="#" data-overlay='weather'>Weather</a></li> -->
+            <li class="divider"></li>
+            <li><a href='#' data-toggle="modal" data-target="#legend-modal">Legend</a></li>
           </ul>
         </li>
         <li class="dropdown">
@@ -169,6 +170,149 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <p>To share a link to this current journey, copy this address:</p>
         <textarea class="input-block-level" disabled rows='6'></textarea>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id='legend-modal' tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class='modal-title'>Legend</h4>
+      </div>
+      <div class="modal-body">
+        <h5>Points of Interest</h5>
+        
+          <div class="row">
+            
+              <div class="span3"><i class="poi-icon airport"></i> Airport</div>
+            
+              <div class="span3"><i class="poi-icon bike_shop"></i> Bike shop</div>
+            
+          </div>
+        
+          <div class="row">
+            
+              <div class="span3"><i class="poi-icon bus_stop"></i> Bus stop</div>
+            
+              <div class="span3"><i class="poi-icon church"></i> Church</div>
+            
+          </div>
+        
+          <div class="row">
+            
+              <div class="span3"><i class="poi-icon council_building"></i> Council building</div>
+            
+              <div class="span3"><i class="poi-icon cycle_rake"></i> Cycle rake</div>
+            
+          </div>
+        
+          <div class="row">
+            
+              <div class="span3"><i class="poi-icon drinking_fountain"></i> Drinking fountain</div>
+            
+              <div class="span3"><i class="poi-icon hospital"></i> Hospital</div>
+            
+          </div>
+        
+          <div class="row">
+            
+              <div class="span3"><i class="poi-icon information"></i> Information</div>
+            
+              <div class="span3"><i class="poi-icon landmark"></i> Landmark</div>
+            
+          </div>
+        
+          <div class="row">
+            
+              <div class="span3"><i class="poi-icon library"></i> Library</div>
+            
+              <div class="span3"><i class="poi-icon museum"></i> Museum</div>
+            
+          </div>
+        
+          <div class="row">
+            
+              <div class="span3"><i class="poi-icon park"></i> Park</div>
+            
+              <div class="span3"><i class="poi-icon playground"></i> Playground</div>
+            
+          </div>
+        
+          <div class="row">
+            
+              <div class="span3"><i class="poi-icon pool"></i> Pool</div>
+            
+              <div class="span3"><i class="poi-icon post_office"></i> Post office</div>
+            
+          </div>
+        
+          <div class="row">
+            
+              <div class="span3"><i class="poi-icon rec_centre"></i> Rec centre</div>
+            
+              <div class="span3"><i class="poi-icon reserve"></i> Reserve</div>
+            
+          </div>
+        
+          <div class="row">
+            
+              <div class="span3"><i class="poi-icon school"></i> School</div>
+            
+              <div class="span3"><i class="poi-icon seat"></i> Seat</div>
+            
+          </div>
+        
+          <div class="row">
+            
+              <div class="span3"><i class="poi-icon shopping_mall"></i> Shopping mall</div>
+            
+              <div class="span3"><i class="poi-icon skatepark"></i> Skatepark</div>
+            
+          </div>
+        
+          <div class="row">
+            
+              <div class="span3"><i class="poi-icon steps"></i> Steps</div>
+            
+              <div class="span3"><i class="poi-icon streetlight"></i> Streetlight</div>
+            
+          </div>
+        
+          <div class="row">
+            
+              <div class="span3"><i class="poi-icon theatre"></i> Theatre</div>
+            
+              <div class="span3"><i class="poi-icon toilet"></i> Toilet</div>
+            
+          </div>
+        
+          <div class="row">
+            
+              <div class="span3"><i class="poi-icon trafficlight"></i> Trafficlight</div>
+            
+              <div class="span3"><i class="poi-icon zebracrossing"></i> Zebracrossing</div>
+            
+          </div>
+        
+        <hr>
+        <h5>Paths</h5>
+        <ul class="unstyled">
+          <li><i class="path-line sealed_ped"></i> Sealed Pedestrian Path</li>
+          <li><i class="path-line unsealed_ped"></i> Unsealed Pedestrian Path</li>
+          <li><i class="path-line sealed_shared"></i> Sealed Shared Path</li>
+          <li><i class="path-line unsealed_shared"></i> Unsealed Shared Path</li>
+          <li><i class="path-line cycle_lane"></i> Cycle Lane</li>
+        </ul>
+        <hr>
+        <h5>Traffic</h5>
+        <ul class="unstyled">
+          <li><i class="traffic-line crawl"></i> Slow</li>
+          <li><i class="traffic-line slow"></i></li>
+          <li><i class="traffic-line medium"></i></li>
+          <li><i class="traffic-line fast"></i> Fast</li>
+        </ul>
       </div>
     </div>
   </div>
