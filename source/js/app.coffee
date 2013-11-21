@@ -54,7 +54,7 @@ define ["jquery", "marionette", "lib/jp_map", "app/routers/default", "app/collec
     $("a[href='#results']").on "show", @showResults
 
   App.addInitializer ->
-    $("#overlay-options li a").click (e)=>
+    $("#overlay-options li a[data-overlay]").click (e)=>
       @map.updateOverlay($(e.target).data("overlay"))
       $("#overlay-options").dropdown("toggle")
       false

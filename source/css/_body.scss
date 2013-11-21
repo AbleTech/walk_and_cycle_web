@@ -217,14 +217,87 @@ ul.print-options{
         @include animation-delay(200ms);
       }
   }
-
-
 }
 
 #link-modal{
   textarea{
     cursor: text;
     font-size: 1em;
+  }
+}
+
+.poi-icon{
+  background: #fff image-url('poi_markers.png') no-repeat;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  &.airport{ background-position: -2px -2px; }
+  &.bike_shop{ background-position: -26px -2px; }
+  &.bus_stop{ background-position: -50px -2px; }
+  &.church{ background-position: -74px -2px; }
+  &.council_building{ background-position: -98px -2px; }
+  &.cycle_rake{ background-position: -2px -26px; }
+  &.drinking_fountain{ background-position: -26px -26px; }
+  &.hospital{ background-position: -50px -26px; }
+  &.information{ background-position: -74px -26px; }
+  &.landmark{ background-position: -98px -26px; }
+  &.library{ background-position: -2px -50px; }
+  &.museum{ background-position: -26px -50px; }
+  &.park{ background-position: -50px -50px; }
+  &.playground{ background-position: -74px -50px; }
+  &.pool{ background-position: -98px -50px; }
+  &.post_office{ background-position: -2px -74px; }
+  &.rec_centre{ background-position: -26px -74px; }
+  &.reserve{ background-position: -50px -74px; }
+  &.school{ background-position: -74px -74px; }
+  &.seat{ background-position: -98px -74px; }
+  &.shopping_mall{ background-position: -2px -98px; }
+  &.skatepark{ background-position: -26px -98px; }
+  &.steps{ background-position: -50px -98px; }
+  &.streetlight{ background-position: -74px -98px; }
+  &.theatre{ background-position: -98px -98px; }
+  &.toilet{ background-position: -122px -2px; }
+  &.trafficlight{ background-position: -122px -26px; }
+  &.zebracrossing{ background-position: -122px -50px; }
+}
+
+.path-line, .traffic-line{
+  display: inline-block;
+  margin-top: 5px;
+  width: 20px;
+  height: 5px;
+  margin-right: 5px;
+}
+.path-line{
+  &.sealed_ped{
+    border-top: solid 2px #c10000;
+  }
+  &.unsealed_ped{
+    border-top: solid 1px #ff6464;
+  }
+  &.sealed_shared{
+    border-top: solid 2px #008000;
+  }
+  &.unsealed_shared{
+    border-top: solid 1px #33cc00;
+  }
+  &.cycle_lane{
+    border-top: solid 2px #00ffff;
+  }
+}
+
+.traffic-line{
+  &.crawl{
+    border-top: solid 2px rgb(0,0,0);
+  }
+  &.slow{
+    border-top: solid 2px rgb(153,0,0);
+  }
+  &.medium{
+    border-top: solid 2px rgb(255,204,0);
+  }
+  &.fast{
+    border-top: solid 2px rgb(51,177,0);
   }
 }
 
