@@ -7,6 +7,7 @@
 //= require vendor/bootstrap
 //= require vendor/jquery.bbq
 //= require vendor/markerwithlabel
+//= require vendor/context_menu
 //= require_self
 
 

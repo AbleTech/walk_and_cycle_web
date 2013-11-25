@@ -1,4 +1,4 @@
-define ['underscore', 'jquery', 'context_menu', 'app/collections/points_of_interest', 'jquery.cookie'], (_, $, ContextMenu, PointsOfInterest)->
+define ['underscore', 'jquery', 'app/collections/points_of_interest', 'context_menu', 'jquery.cookie'], (_, $, PointsOfInterest, ContextMenu)->
 
   class JPMap extends google.maps.Map
     map_opts:

@@ -11,7 +11,7 @@ require.config
     "jquery.bbq": "vendor/jquery.bbq"
     "bootstrap": "vendor/bootstrap"
     "marker_with_label": "vendor/markerwithlabel"
-    "context_menu": "lib/context_menu"
+    "context_menu": "vendor/context_menu"
 
 
   shim:

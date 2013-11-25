@@ -10,7 +10,8 @@
       "jquery.cookie": "../../source/components/jquery.cookie/jquery.cookie",
       "jquery.bbq": "vendor/jquery.bbq",
       "bootstrap": "vendor/bootstrap",
-      "marker_with_label": "vendor/markerwithlabel"
+      "marker_with_label": "vendor/markerwithlabel",
+      "context_menu": "vendor/context_menu"
     },
     shim: {
       "backbone": {
@@ -35,6 +36,9 @@
       },
       "marker_with_label":{
         exports: "MarkerWithLabel"
+      },
+      "context_menu":{
+        exports: "ContextMenu"
       }
     },
     name: "main",
