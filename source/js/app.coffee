@@ -19,6 +19,14 @@ define ["jquery", "marionette", "lib/jp_map", "app/routers/default", "app/collec
   App.addInitializer (options)->
     @map = new JPMap document.getElementById('mapdiv')
     @map.updateOverlay($.cookie("jp_overlay")) if $.cookie("jp_overlay")?
+    google.maps.event.addListener @map.context_menu, 'menu_item_selected', (latLng, item)=>
+      @map.context_menu.hide()
+      if item == "start_point"
+        waypoint = App.router.journey.waypoints.first()
+      else if item == "end_point"
+        waypoint = App.router.journey.waypoints.last()
+      waypoint.set x: latLng.lng(), y: latLng.lat()
+      waypoint.setAddress()
 
   App.addInitializer (options)->
     @all_examples = new ExampleJourneys()

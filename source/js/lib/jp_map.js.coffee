@@ -1,4 +1,4 @@
-define ['jquery', 'app/collections/points_of_interest', 'jquery.cookie'], ($, PointsOfInterest)->
+define ['underscore', 'jquery', 'context_menu', 'app/collections/points_of_interest', 'jquery.cookie'], (_, $, ContextMenu, PointsOfInterest)->
 
   class JPMap extends google.maps.Map
     map_opts:
@@ -11,8 +11,12 @@ define ['jquery', 'app/collections/points_of_interest', 'jquery.cookie'], ($, Po
     constructor: (element)->
       super element, @map_opts
 
+      @context_menu = new ContextMenu(@, classNames:{ menu:'dropdown-menu', menuSeparator:'divider'}, menuItems: [{className:'', eventName:'start_point', label:'<a href="#">Set as start point.</a>'}, {className:'', eventName:'end_point', label:'<a href="#">Set as end point.</a>'}])
+
       google.maps.event.addListener @, "maptypeid_changed", =>
         $.cookie "jp_maptype", @getMapTypeId(), {path: "/", expires: 365}
+      google.maps.event.addListener @, "rightclick", (e)=>
+        @context_menu.show(e.latLng)
 
       @setupLayers()
 

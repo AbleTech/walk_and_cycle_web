@@ -54,6 +54,11 @@ define ["backbone", "lib/address_services"], (Backbone, AddressService)->
       unless attrs.y
         errors.push "missing y coordinate"
 
+    setAddress: =>
+      AddressService.ClosestAddress.find @get("y"), @get("x"), (data)=>
+        if data
+          @set { a: data.a }
+
     updateWaypoint: =>
       @dragging = false
       clearTimeout @live_update_timeout

@@ -186,6 +186,7 @@ define ["jquery", "underscore", "backbone", "config", "app/collections/waypoints
         map: App.map
         draggable: true
         visible: false
+        title: "Drag line to adjust route"
 
       google.maps.event.addListener @_drag_marker, "mouseover", (e)=> @showDragMarker()
       google.maps.event.addListener @_drag_marker, "mousedown", (e)=> @_drag_marker.set("live_drag", true)

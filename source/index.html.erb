@@ -18,6 +18,7 @@
     </ul>
   </div>
 <% end %>
+
 <div class="row-fluid">
   <div class="span3 left_sidebar">
     <div class="sidebar_content">
@@ -86,54 +87,54 @@
     </div>
   </div>
 </div>
-<div class="modal fade" id="link-modal" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-body">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <p>To share a link to this current journey, copy this address:</p>
-        <textarea class="input-block-level" disabled rows='6'></textarea>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="modal fade" id='legend-modal' tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class='modal-title'>Legend</h4>
-      </div>
-      <div class="modal-body">
-        <h5>Points of Interest</h5>
-        <% data.pois.classes.each_slice(2) do |group| %>
-          <div class="row">
-            <% group.each do |poi| %>
-              <div class="span3"><i class="poi-icon <%= poi %>"></i> <%= poi.humanize %></div>
-            <% end %>
+      <div class="modal fade" id="link-modal" style="display:none;" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-body">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <p>To share a link to this current journey, copy this address:</p>
+              <textarea class="input-block-level" disabled rows='6'></textarea>
+            </div>
           </div>
-        <% end %>
-        <hr>
-        <h5>Paths</h5>
-        <ul class="unstyled">
-          <li><i class="path-line sealed_ped"></i> Sealed Pedestrian Path</li>
-          <li><i class="path-line unsealed_ped"></i> Unsealed Pedestrian Path</li>
-          <li><i class="path-line sealed_shared"></i> Sealed Shared Path</li>
-          <li><i class="path-line unsealed_shared"></i> Unsealed Shared Path</li>
-          <li><i class="path-line cycle_lane"></i> Cycle Lane</li>
-        </ul>
-        <hr>
-        <h5>Traffic</h5>
-        <ul class="unstyled">
-          <li><i class="traffic-line crawl"></i> Slow</li>
-          <li><i class="traffic-line slow"></i></li>
-          <li><i class="traffic-line medium"></i></li>
-          <li><i class="traffic-line fast"></i> Fast</li>
-        </ul>
+        </div>
       </div>
-    </div>
-  </div>
-</div>
+      <div class="modal fade" id='legend-modal' style="display:none;" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class='modal-title'>Legend</h4>
+            </div>
+            <div class="modal-body">
+              <h5>Points of Interest</h5>
+              <% data.pois.classes.each_slice(2) do |group| %>
+                <div class="row">
+                  <% group.each do |poi| %>
+                    <div class="span3"><i class="poi-icon <%= poi %>"></i> <%= poi.humanize %></div>
+                  <% end %>
+                </div>
+              <% end %>
+              <hr>
+              <h5>Paths</h5>
+              <ul class="unstyled">
+                <li><i class="path-line sealed_ped"></i> Sealed Pedestrian Path</li>
+                <li><i class="path-line unsealed_ped"></i> Unsealed Pedestrian Path</li>
+                <li><i class="path-line sealed_shared"></i> Sealed Shared Path</li>
+                <li><i class="path-line unsealed_shared"></i> Unsealed Shared Path</li>
+                <li><i class="path-line cycle_lane"></i> Cycle Lane</li>
+              </ul>
+              <hr>
+              <h5>Traffic</h5>
+              <ul class="unstyled">
+                <li><i class="traffic-line crawl"></i> Slow</li>
+                <li><i class="traffic-line slow"></i></li>
+                <li><i class="traffic-line medium"></i></li>
+                <li><i class="traffic-line fast"></i> Fast</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
 <% content_for :javascript do %>
   <%= javascript_include_tag "vendor/require", data:{main: asset_path(:js, :main)} %>
 <% end %>

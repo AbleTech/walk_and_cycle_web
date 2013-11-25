@@ -11,6 +11,7 @@ require.config
     "jquery.bbq": "vendor/jquery.bbq"
     "bootstrap": "vendor/bootstrap"
     "marker_with_label": "vendor/markerwithlabel"
+    "context_menu": "lib/context_menu"
 
 
   shim:
@@ -32,6 +33,8 @@ require.config
       deps: ["jquery"]
     "marker_with_label":
       exports: "MarkerWithLabel"
+    "context_menu":
+      exports: "ContextMenu"
 
 define ["jquery", "app"], ($)->
   $(document).ready ->
