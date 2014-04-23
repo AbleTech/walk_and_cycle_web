@@ -3,6 +3,10 @@ define ["backbone", "lib/address_services"], (Backbone, AddressService)->
     dragging: false
 
     initialize: ->
+      if @get("x") == 0 || @get("y") == 0
+        AddressService.Geocode.find @get("a"), (latlng)=>
+          @set { x : latlng.lng(), y : latlng.lat() }
+          @trigger "update_point"
       @on "remove", =>
         @getMarker().setMap(null)
 
