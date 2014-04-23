@@ -31,4 +31,17 @@ define ["jquery"], ($)->
         $.getJSON "http://addressfinder.co.nz/api/address/info.json?callback=?", query_options, (data)=>
           @callback(data)
 
+  class AddressService.Geocode
+    instance = null
+    @find: (q, callback)->
+      new PrivateClass(q, callback)
+
+    class PrivateClass
+      constructor: (@q, @callback)->
+        @geocoder = new google.maps.Geocoder()
+        @geocoder.geocode {address: @q, componentRestrictions:{country:"NZ", administrativeArea: "Wellington"}}, (results,status)=>
+          if status == google.maps.GeocoderStatus.OK
+            console.log results[0]
+            @callback?.call(undefined, results[0].geometry.location)
+
   return AddressService
