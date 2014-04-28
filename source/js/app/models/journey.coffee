@@ -11,13 +11,12 @@ define ["jquery", "underscore", "backbone", "config", "app/collections/waypoints
       @waypoints = new Waypoints()
       @waypoints.journey = @
       @steps     = new Steps()
-      @set "pace", $.cookie("jp_speed") || "average"
 
-      @on "change", =>
+      @on "change:waypoints change:steps", =>
         @waypoints.reset(@get('waypoints'))
         @steps.reset(@get('steps'))
-      @on "change:pace", =>
-        $.cookie("jp_speed", @get("pace"), {path: "/", expires: 365})
+      @on "change:elevation", =>
+        @set( "pace", @default_pace())
       @on "sync", =>
         $("a[href='#results']").show().tab("show")
         @updateMap() if @get("encoded_polyline")
@@ -63,6 +62,24 @@ define ["jquery", "underscore", "backbone", "config", "app/collections/waypoints
 
     carbon_saving: ->
       0.214 * (@get("total_distance")/1000)
+
+    default_pace: ->
+      switch @get("mode")
+        when 'walking'
+          if @elevation_change() >= 0.1 then "slow" else "average"
+        when "cycling"
+          if @elevation_change() >= 0.03
+            "slow"
+          else if @elevation_change() <= -0.05
+            "fast"
+          else
+            "average"
+
+    elevation_change: ->
+      return 0 unless @get('elevation')?
+      start_elevation = _(@get('elevation').data).first()[1]
+      finish_elevation = _(@get('elevation').data).last()[1]
+      (finish_elevation - start_elevation) / @get("total_distance")
 
     calculate_calories: (weight)->
       Math.round(weight * @total_time() * @currentEffort() * @get("altitude_factor"))
