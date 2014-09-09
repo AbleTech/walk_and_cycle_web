@@ -39,8 +39,7 @@ define ["backbone", "lib/address_services"], (Backbone, AddressService)->
           {url: "img/waypoint_markers/end.png", scaledSize: new google.maps.Size(41,27), anchor: new google.maps.Point(14,27)}
         when "live_drag"
           { path: google.maps.SymbolPath.CIRCLE, scale: 4, fillColor: "#2564a5", fillOpacity: 1, strokeColor: "#2564a5" }
-        else
-          {}
+
 
     getLatLng: ->
       @_latlng ||= new google.maps.LatLng(@get("y"), @get("x"))
