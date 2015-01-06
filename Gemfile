@@ -19,8 +19,7 @@ gem "ejs", "~> 1.1.1"
 gem 'guard'
 
 # Deployment
-gem "capistrano"
-gem "capistrano-ext"
+gem 'middleman-deploy'
 
 # Tests
 # gem 'guard-rspec'

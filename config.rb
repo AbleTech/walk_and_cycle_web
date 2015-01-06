@@ -23,6 +23,12 @@ end
 
 ::Middleman::Extensions.register(:requirejs, RequireJS)
 
+activate :deploy do |deploy|
+  deploy.method = :git
+  deploy.branch = 'build'
+  deploy.build_before = true
+end
+
 configure :build do
   ignore "components/*"
 
