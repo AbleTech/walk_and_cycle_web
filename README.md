@@ -1,6 +1,6 @@
 # Walking & Cycling Journey Planner front end
 
-This is the front end application for journeyplanner.org.nz (on behalf of GWRC)
+This is the front end application for [journeyplanner.org.nz](http://www.journeyplanner.org.nz) (on behalf of GWRC)
 
 ## Development
 
