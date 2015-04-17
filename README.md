@@ -1,34 +1,38 @@
-# Front end for Walking & Cycling Journey Planner
+# Walking & Cycling Journey Planner front end
 
 This is the front end application for journeyplanner.org.nz (on behalf of GWRC)
 
-### Development
+## Development
 
-## Setup
+### Setup
 
 You'll need to have both [Bundler](http://bundler.io/) and [Bower](http://bower.io/) installed to load development and build dependencies.
 
-  $ bundle install
-  $ bower install
+    $ bundle install
+    $ bower install
 
-## Run
+### Run
 
-  $ middleman server
+    $ middleman server
 
-Access the running app at localhost:4567
+Go to [localhost:4567](http://localhost:4567) in your browser
 
-### Production Build
+## Production Build
 
-If it's your first time doing a build, you'll need to setup the build directory in your local project.
+### First time?
 
-  $ git clone -b build --single-branch git@github.com:AbleTech/walk_and_cycle_web.git build
+You'll need to setup the build directory in your local project.
 
-This will setup an orphaned branch that contains only the compiled app.
+      $ git clone -b build --single-branch git@github.com:AbleTech/walk_and_cycle_web.git build
 
-  $ middleman build
-  $ cd build
-  $ git add .
-  $ git commit -m 'msg'
-  $ git push
+This command will setup an orphaned branch that contains only the compiled app.
+
+### Compile and push
+
+    $ middleman build
+    $ cd build
+    $ git add .
+    $ git commit -m 'msg'
+    $ git push
 
 This will compile the project and push it to a separate branch called build.
