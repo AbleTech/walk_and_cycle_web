@@ -36,3 +36,7 @@ This command will setup an orphaned branch that contains only the compiled app.
     $ git push
 
 This will compile the project and push it to a separate branch called build.
+
+## Development
+
+Please refer to the [main app's README](https://github.com/AbleTech/gwrc_walking_and_cycling/blob/master/README.md#deployment) for deployment instructions.
