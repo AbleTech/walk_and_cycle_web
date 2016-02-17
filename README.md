@@ -6,14 +6,17 @@ This is the front end application for [journeyplanner.org.nz](http://www.journey
 
 ### Setup
 
-You'll need to have both [Bundler](http://bundler.io/) and [Bower](http://bower.io/) installed to load development and build dependencies.
+You'll need to have the following installed to load development and build dependencies:
+* [Bundler](http://bundler.io/)
+* [Bower](http://bower.io/)
+* [RequireJS](http://requirejs.org/docs/optimization.html)
 
     $ bundle install
     $ bower install
 
 ### Run
 
-    $ middleman server
+    $ bundle exec middleman server
 
 Go to [localhost:4567](http://localhost:4567) in your browser
 
@@ -29,7 +32,7 @@ This command will setup an orphaned branch that contains only the compiled app.
 
 ### Compile and push
 
-    $ middleman build
+    $ bundle exec middleman build
     $ cd build
     $ git add .
     $ git commit -m 'msg'
